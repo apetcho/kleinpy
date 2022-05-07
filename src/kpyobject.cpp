@@ -39,3 +39,8 @@ KPyObject::KPyObject(){
 
 // ---
 KPyObject::~KPyObject(){}
+
+// ---
+KPyType* KPyObject::get_type(){
+    return NULL;
+}
