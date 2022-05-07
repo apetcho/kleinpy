@@ -18,7 +18,7 @@ KPyType* KPyBuiltinPrint::get_type(){
 }
 
 // ---
-KPyObject* KPyBuiltinIter::__call__(std::vector<KPyObject*>* args){
+KPyObject* KPyBuiltinPrint::__call__(std::vector<KPyObject*>* args){
     std::string output = "";
     KPyObject *x;
     KPyObject* y;
@@ -40,7 +40,7 @@ KPyObject* KPyBuiltinIter::__call__(std::vector<KPyObject*>* args){
 }
 
 
-// // ---
-// std::string KPyBuiltinIter::to_string(){
-//     return "iter";
-// }
+// ---
+std::string KPyBuiltinPrint::to_string(){
+    return "print";
+}
