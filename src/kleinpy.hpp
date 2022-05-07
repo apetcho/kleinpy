@@ -752,7 +752,20 @@ constexpr int KPYBADTOKEN = 99;
 // -----------------------
 // --- class PyScanner ---
 // -----------------------
+class KPyScanner {
+public:
+    KPyScanner(std::istream *istrm);
+    virtual ~KPyScanner();
+    void put_back_token();
 
+private:
+    std::istream *istrm;
+    KPyToken *lasttok;
+    bool needtok;
+    int colcount;
+    int linecount;
+    bool error;
+};
 
 
 // -----------------------
