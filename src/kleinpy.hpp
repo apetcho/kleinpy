@@ -4,15 +4,14 @@
 #include<unordered_map>
 #include<vector>
 #include<iostream>
-// string
-// vector
-// unordered_map
+
 
 namespace kleinpy{
 class KPyType;  // foreward declaration
 
-
-// class KPyObject
+// -----------------------
+// --- class KPyObject ---
+// -----------------------
 class KPyObject{
 public:
     KPyObject();
@@ -39,7 +38,19 @@ protected:
 std::ostream& operator<<(std::ostream& out, KPyObject& obj);
 extern bool verbose;
 
-// class PyCallable
+// ------------------------
+// --- class KPyCallable ---
+// ------------------------
+class KPyCallable : public KPyObject {
+public:
+    KPyCallable();
+    KPyCallable(const KPyCallable& callable);
+    virtual ~KPyCallable();
+
+protected:
+    virtual KPyObject* __call__(std::vector<KPyObject*>* args) = 0;
+};
+
 // class PyAttr
 // class PyBool
 // class PyBuiltinConcat
