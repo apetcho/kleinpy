@@ -809,7 +809,28 @@ private:
     KPyByteCode* labeled_instructions();
 };
 
-// class PyRange
+// ----------------------
+// --- class KPyRange ---
+// ----------------------
+class KPyRange : public KPyObject{
+public:
+    KPyRange(int start, int stop, int increment);
+    virtual ~KPyRange();
+    KPyType* get_type();
+    KPyObject* index_of(int index);
+    std::string to_string();
+
+protected:
+    int start;
+    int stop;
+    int increment;
+
+    virtual KPyObject* __iter__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __next__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __getitem__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __list__(std::vector<KPyObject*>* args);
+};
+
 // class PyRangeIterator
 // class PyRangeType
 // class _PyStackElement
