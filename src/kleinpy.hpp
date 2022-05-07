@@ -706,9 +706,21 @@ protected:
 // ---------------------
 // --- class KPyNone ---
 // ---------------------
+class KPyNone : public KPyObject{
+public:
+    KPyNone();
+    KPyNone(const KPyNone& obj);
+    virtual ~KPyNone();
+    KPyType* get_type();
+    std::string to_string();
 
+protected:
+};
 
-// class PyParser
+// -----------------------
+// --- class KPyParser ---
+// -----------------------
+
 // class PyRange
 // class PyRangeIterator
 // class PyRangeType
