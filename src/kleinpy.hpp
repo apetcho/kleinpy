@@ -831,7 +831,24 @@ protected:
     virtual KPyObject* __list__(std::vector<KPyObject*>* args);
 };
 
-// class PyRangeIterator
+// -----------------------------
+// --- class PyRangeIterator ---
+// -----------------------------
+class KPyRangeIterator : public KPyObject {
+public:
+    KPyRangeIterator(KPyRange *rangeObj);
+    virtual ~KPyRangeIterator();
+    KPyType* get_type();
+    std::string to_string();
+
+protected:
+    KPyRange *rangeObj;
+    int index;
+
+    virtual KPyObject* __iter__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __next__(std::vector<KPyObject*>* args);
+};
+
 // class PyRangeType
 // class _PyStackElement
 // class PyStack
