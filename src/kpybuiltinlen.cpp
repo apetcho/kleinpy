@@ -6,7 +6,7 @@ using namespace kleinpy;
 KPyBuiltinLen::KPyBuiltinLen() : KPyCallable(){}
 
 // ---
-// KPyBuiltinIter::KPyBuiltinIter(const KPyBuiltinIter& other){}
+KPyBuiltinLen::KPyBuiltinLen(const KPyBuiltinLen& other){}
 
 // // ---
 // KPyBuiltinIter::~KPyBuiltinIter(){}
