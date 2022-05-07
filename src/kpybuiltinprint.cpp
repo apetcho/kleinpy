@@ -8,8 +8,8 @@ KPyBuiltinPrint::KPyBuiltinPrint() : KPyCallable(){}
 // ---
 KPyBuiltinPrint::KPyBuiltinPrint(const KPyBuiltinPrint& other){}
 
-// // ---
-// KPyBuiltinIter::~KPyBuiltinIter(){}
+// ---
+KPyBuiltinPrint::~KPyBuiltinPrint(){}
 
 
 // // ---
