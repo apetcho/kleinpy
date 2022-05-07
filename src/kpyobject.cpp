@@ -64,3 +64,13 @@ KPyObject* KPyObject::__str__(std::vector<KPyObject*>* args){
 
     return new KPyStr(to_string());
 }
+
+// ---
+KPyObject* KPyObject::__type__(std::vector<KPyObject*>* args){
+    std::ostringstream message;
+    if(args->size() != 0){
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, message.str());
+    }
+
+    return (KPyObject*)this->get_type();
+}
