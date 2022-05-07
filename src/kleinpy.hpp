@@ -591,6 +591,29 @@ private:
 // ------------------------
 // --- class KPyFunList ---
 // ------------------------
+class KPyFunList : public KPyObject{
+public:
+    KPyFunList(std::vector<KPyObject*>* obj);
+    KPyFunList();
+    KPyFunList(KPyObject *head, KPyFunList *tail);
+    KPyFunList(KPyFunListNode *node);
+    virtual ~KPyFunList();
+    KPyType* get_type();
+    std::string to_string();
+    KPyObject* get_head();
+    KPyFunList* get_tail();
+    KPyFunListNode* get_node();
+
+protected:
+    KPyFunListNode *data;
+    virtual KPyObject* __getitem__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __len__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __iter__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __add__(std::vector<KPyObject*>* args);
+    virtual KPyObject* head(std::vector<KPyObject*>* args);
+    virtual KPyObject* tail(std::vector<KPyObject*>* args);
+    virtual KPyObject* concat(std::vector<KPyObject*>* args);
+};
 
 // class PyFunListIterator
 // class PyInt
