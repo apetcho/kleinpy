@@ -30,3 +30,9 @@ KPyBool::KPyBool(const KPyBool& obj) : KPyBool(){
 
 // ---
 KPyBool::~KPyBool(){}
+
+// ---
+std::string KPyBool::to_string(){
+    if(value){ return "True"; }
+    return "False";
+}
