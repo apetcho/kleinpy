@@ -49,3 +49,8 @@ KPyObject* KPyBool::__eq__(std::vector<KPyObject*>* args){
 
     return new KPyBool(value == other->value);
 }
+
+// ---
+KPyType* KPyBool::get_type(){
+    return kpytypes[KPyTypeId::KPY_BOOL_TYPE];
+}
