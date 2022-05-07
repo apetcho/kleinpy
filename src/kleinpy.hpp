@@ -570,8 +570,28 @@ private:
     KPyObject* __call__(std::vector<KPyObject*>* args);
 };
 
-// class PyFunListElem
-// class PyFunList
+// ----------------------------
+// --- class KPyFunListNode --- 
+// ----------------------------
+class KPyFunListNode {
+public:
+    KPyFunListNode(KPyObject* head, KPyFunListNode *tail);
+    ~KPyFunListNode();
+    std::string to_string();
+    KPyObject* get_head();
+    KPyFunListNode* get_tail();
+    int get_len();
+
+private:
+    KPyObject *head;
+    KPyFunListNode *tail;
+    int len;
+};
+
+// ------------------------
+// --- class KPyFunList ---
+// ------------------------
+
 // class PyFunListIterator
 // class PyInt
 // class PyList
