@@ -717,6 +717,44 @@ public:
 protected:
 };
 
+// ----------------------
+// --- class KPyToken ---
+// ----------------------
+class KPyToken {
+public:
+    KPyToken(int tokenType, std::string lex, int lineno, int colno);
+    virtual ~KPyToken();
+    std::string get_lex() const;
+    int get_type() const ;
+    int get_colno() const;
+    int get_lineno() const;
+
+private:
+    std::string lex;
+    int toktype;
+    int lineno;
+    int colno;
+};
+
+constexpr int KPYINDENTIFIERTOKEN = 1;
+constexpr int KPYINTEGERTOKEN = 2;
+constexpr int KPYFLOATTOKEN = 3;
+constexpr int KPYSTRINGTOKEN = 4;
+constexpr int KPYKEYWORDTOKEN = 5;
+constexpr int KPYCOLONTOKEN = 6;
+constexpr int KPYCOMMATOKEN = 7;
+constexpr int KPYSLASHTOKEN = 8;
+constexpr int KPYLEFTPARENTOKEN = 9;
+constexpr int KPYRIGHTPARENTOKEN = 10;
+constexpr int KPYEOFTOKEN = 98;
+constexpr int KPYBADTOKEN = 99;
+
+// -----------------------
+// --- class PyScanner ---
+// -----------------------
+
+
+
 // -----------------------
 // --- class KPyParser ---
 // -----------------------
@@ -724,12 +762,10 @@ protected:
 // class PyRange
 // class PyRangeIterator
 // class PyRangeType
-// class PyScanner
 // class _PyStackElement
 // class PyStack
 // class PyStr or PyString
 // class PyStrIterator
-// class PyToken
 // class PyTuple
 // class PyTupleIterator
 
