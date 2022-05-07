@@ -9,6 +9,7 @@
 namespace kleinpy{
 class KPyType;  // forward declaration
 class KPyFrame;
+template<typename T> class KPyStack;
 
 // -----------------------
 // --- class KPyObject ---
@@ -510,11 +511,45 @@ protected:
     virtual KPyObject* __bool__(std::vector<KPyObject*>* args);
 };
 
-// ---------------------
-// --- class PyFrame ---
-// ---------------------
+// ----------------------
+// --- class KPyFrame ---
+// ----------------------
+class KPyFrame : public KPyObject{
+public:
+    KPyFrame(
+        const KPyCode& code, std::vector<KPyObject*>* args,
+        std::unordered_map<std::string, KPyObject*>& globals,
+        const std::vector<KPyObject*>& consts,
+        std::unordered_map<std::string, KPyCell*>& cellVars
+    );
 
-// class PyFunction
+    virtual ~KPyFrame();
+
+    KPyObject* execute();
+    std::string get_cell_name(int index);
+    const KPyCode& get_code() const;
+    int get_pc() const;
+
+private:
+    const KPyCode& code;
+    int pc;
+    std::unordered_map<std::string, KPyObject*> locals;
+    std::unordered_map<std::string, KPyObject*>& globals;
+    std::unordered_map<std::string, KPyCell*>& cellVars;
+    const std::vector<KPyObject*>& consts;
+
+    KPyStack<KPyObject*>& opstack;
+    KPyStack<int>* blockstack;
+    KPyObject* safety_pop();
+};
+
+void push_frame(KPyFrame *frame);
+void pop_frame();
+
+// -------------------------
+// --- class KPyFunction ---
+// -------------------------
+
 // class PyFunListElem
 // class PyFunList
 // class PyFunListIterator
