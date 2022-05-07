@@ -60,7 +60,7 @@ KPyObject* KPyBuiltinFPrint::__call__(std::vector<KPyObject*>* args){
     }
 
     KPyObject *arg = (*args)[0];
-    if(arg->get_type()->type_id() == KPyTypeId::KPY_STR_ITERATOR_TYPE){
+    if(arg->get_type()->type_id() == KPyTypeId::KPY_STR_TYPE){
         output = process_args(output);
     }
     std::cout << output;
