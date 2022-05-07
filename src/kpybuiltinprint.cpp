@@ -12,10 +12,10 @@ KPyBuiltinPrint::KPyBuiltinPrint(const KPyBuiltinPrint& other){}
 KPyBuiltinPrint::~KPyBuiltinPrint(){}
 
 
-// // ---
-// KPyType* KPyBuiltinIter::get_type(){
-//     return kpytypes[KPyTypeId::KPY_BUILTIN_TYPE];
-// }
+// ---
+KPyType* KPyBuiltinPrint::get_type(){
+    return kpytypes[KPyTypeId::KPY_BUILTIN_TYPE];
+}
 
 // // ---
 // KPyObject* KPyBuiltinIter::__call__(std::vector<KPyObject*>* args){
