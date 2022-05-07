@@ -489,8 +489,31 @@ protected:
     KPyObject* __call__(std::vector<KPyObject*>* args);
 };
 
-// class PyFloat
-// class PyFrame 
+// ----------------------
+// --- class KPyFloat ---
+// ----------------------
+class KPyFloat : public KPyObject{
+public:
+    KPyFloat(double value);
+    KPyFloat(const KPyFloat& obj);
+    virtual ~KPyFloat();
+    std::string to_string();
+    KPyType* get_type();
+    double get_value();
+
+protected:
+    double value;
+
+    virtual KPyObject* __add__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __float__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __int__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __bool__(std::vector<KPyObject*>* args);
+};
+
+// ---------------------
+// --- class PyFrame ---
+// ---------------------
+
 // class PyFunction
 // class PyFunListElem
 // class PyFunList
