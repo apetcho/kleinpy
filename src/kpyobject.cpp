@@ -25,3 +25,14 @@ KPyObject* KPyObject::call_method(
 
     return (this->*fun)(args);
 }
+
+
+// --
+KPyObject::KPyObject(){
+    dict["__str__"] = (KPyObject* (KPyObject::*)(std::vector<KPyObject*>*))(
+        &KPyObject::__str__
+    );
+    dict["__type__"] = (KPyObject* (KPyObject::*)(std::vector<KPyObject*>*))(
+        &KPyObject::__type__
+    );
+}
