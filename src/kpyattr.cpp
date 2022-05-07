@@ -23,3 +23,13 @@ KPyType* KPyAttr::get_type(){
 KPyObject* KPyAttr::__call__(std::vector<KPyObject*>* args){
     return self->call_method(method, args);
 }
+
+// ---
+std::string KPyAttr::to_string(){
+    std::ostringstream ss;
+    ss  << "<built-in method " << method << " of "
+        << self->get_type()->to_string()
+        << " object at " << this << ">";
+
+    return ss.str();
+}
