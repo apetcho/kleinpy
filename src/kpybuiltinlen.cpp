@@ -35,7 +35,7 @@ KPyObject* KPyBuiltinLen::__call__(std::vector<KPyObject*>* args){
 }
 
 
-// // ---
-// std::string KPyBuiltinIter::to_string(){
-//     return "iter";
-// }
+// ---
+std::string KPyBuiltinIter::to_string(){
+    return "len";
+}
