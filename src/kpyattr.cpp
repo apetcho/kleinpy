@@ -13,3 +13,8 @@ KPyAttr::~KPyAttr(){
     try{ delete self;}
     catch(...){}
 }
+
+// ---
+KPyType* KPyAttr::get_type(){
+    return kpytypes[KPyTypeId::KPY_BUILTIN_TYPE];
+}
