@@ -771,6 +771,43 @@ private:
 // -----------------------
 // --- class KPyParser ---
 // -----------------------
+class KPyParser {
+public:
+    KPyParser(std::string filename);
+    KPyParser(const KPyParser& obj);
+    virtual ~KPyParser();
+    std::vector<KPyCode*>* parse();
+
+private:
+    KPyScanner *input;
+
+    std::unordered_map<std::string, int> target;
+    int index;
+    std::vector<KPyCode*>* pyassemble_prog();
+    std::vector<KPyCode*>* functionlist_part();
+    std::vector<KPyCode*>* functionlist(std::vector<KPyCode*>* vec);
+
+    KPyCode* fundef();
+    std::vector<KPyObject*>* const_part(std::vector<KPyCode*>* nestedFn);
+    std::vector<KPyObject*>* value_list(
+        std::vector<KPyObject*>* constant,
+        std::vector<KPyCode*>* nestedFn
+    );
+    std::vector<KPyObject*>* value_rest(
+        std::vector<KPyObject*>* constant,
+        std::vector<KPyCode*>* nestedFn
+    );
+    KPyObject* value(std::vector<KPyCode*>* nestedFn);
+    std::vector<std::string>* locals_part();
+    std::vector<std::string>* freeVars_part();
+    std::vector<std::string>* cellVars_part();
+    std::vector<std::string>* idlist(std::vector<std::string>* objlist);
+    std::vector<std::string>* idrest(std::vector<std::string>* objlist);
+    std::vector<std::string>* globals_part();
+    std::vector<KPyByteCode*>* body_part();
+    std::vector<KPyByteCode*>* instruction_list(std::vector<KPyByteCode*>*);
+    KPyByteCode* labeled_instructions();
+};
 
 // class PyRange
 // class PyRangeIterator
