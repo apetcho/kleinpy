@@ -397,9 +397,9 @@ private:
     int nargs;
 };
 
-// -------------------------
-// --- class PyException ---
-// -------------------------
+// --------------------------
+// --- class KPyException ---
+// --------------------------
 class KPyException : public KPyObject{
 public:
     KPyException(int exceptType, KPyObject *obj);
@@ -428,7 +428,39 @@ constexpr int KPYWRONGARGCOUNTEXCEPTION = 5;
 constexpr int KPYSTOPITERATIONEXCEPTION = 6;
 constexpr int KPYMATCHEXCEPTION = 7;
 
-// class PyExceptionType
+// ----------------------------
+// --- enum class KPyTypeId ---
+// ----------------------------
+enum class KPyTypeId{
+    KPY_TYPE_TYPE,
+    KPY_NONE_TYPE,
+    KPY_BOOL_TYPE,
+    KPY_INT_TYPE,
+    KPY_FLOAT_TYPE,
+    KPY_STR_TYPE,
+    KPY_FUNCTION_TYPE,
+    KPY_BUILTIN_TYPE,
+    KPY_RANGE_TYPE_ID,
+    KPY_RAND_ITERATOR_TYPE,
+    KPY_LIST_TYPE,
+    KPY_LIST_ITERATOR_TYPE,
+    KPY_FUNLIST_TYPE,
+    KPY_FUNLIST_ITERATOR_TYPE,
+    KPY_STR_ITERATOR_TYPE,
+    KPY_CODE_TYPE,
+    KPY_TUPLE_TYPE,
+    KPY_TUPLE_ITERATOR,
+    KPY_CELL_TYPE,
+    KPY_EXCEPTION_TYPE_ID
+};
+
+// ------------------------------
+// --- class KPyExceptionType ---
+// ------------------------------
+//class KPyExceptionType: public KPyType {
+//public:
+//};
+
 // class PyFloat
 // class PyFrame 
 // class PyFunction
@@ -451,7 +483,7 @@ constexpr int KPYMATCHEXCEPTION = 7;
 // class PyToken
 // class PyTuple
 // class PyTupleIterator
-// enum PyTypeId
+
 // --- pyutil ---
 // printMap()
 
