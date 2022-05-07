@@ -7,3 +7,6 @@ KPyBuiltinInput::KPyBuiltinInput() : KPyCallable(){}
 
 // ---
 KPyBuiltinInput::KPyBuiltinInput(const KPyBuiltinInput& other){}
+
+// ---
+KPyBuiltinInput::~KPyBuiltinInput(){}
