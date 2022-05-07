@@ -79,3 +79,8 @@ KPyObject* KPyBuiltinTPrint::__call__(std::vector<KPyObject*>* args){
 
     return new KPyNone();
 }
+
+// ---
+std::string KPyBuiltinTPrint::to_string(){
+    return "tprint";
+}
