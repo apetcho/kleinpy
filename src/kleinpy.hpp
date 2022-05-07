@@ -632,8 +632,40 @@ protected:
     virtual KPyObject* __next__(std::vector<KPyObject*>* args);
 };
 
-// class PyInt
-// class PyList
+// --------------------
+// --- class KPyInt ---
+// --------------------
+class KPyInt : public KPyObject{
+public:
+    KPyInt(int value);
+    KPyInt(const KPyInt& obj);
+    virtual ~KPyInt();
+    KPyType* get_type();
+    std::string to_string();
+    int get_value();
+
+protected:
+    int value;
+
+    virtual KPyObject* __add__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __sub__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __mul__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __floordiv__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __truediv__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __eq__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __gt__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __lt__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __ge__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __le__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __float__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __int__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __bool__(std::vector<KPyObject*>* args);
+};
+
+// --------------------
+// --- class PyList ---
+// --------------------
+
 // class PyListIterator
 // class PyNone
 // class PyParser
