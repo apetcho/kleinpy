@@ -70,7 +70,28 @@ protected:
     virtual KPyObject* __call__(std::vector<KPyObject*>* args);
 }; // KPyAttr
 
-// class PyBool
+// --------------------
+// --- class PyBool ---
+// --------------------
+class KPyBool : public KPyObject{
+public:
+    KPyBool();
+    KPyBool(const KPyBool& obj);
+    virtual ~KPyBool();
+
+    KPyType* get_type();
+    std::string to_string();
+    bool get_value();
+
+protected:
+    bool value;
+
+    virtual KPyObject* __float__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __int__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __bool__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __eq__(std::vector<KPyObject*>* args);
+};
+
 // class PyBuiltinConcat
 // class PyBuiltinFPrint
 // class PyBuiltinInput
