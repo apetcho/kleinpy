@@ -57,3 +57,15 @@ KPyType* KPyBool::get_type(){
 
 // ---
 bool KPyBool::get_value(){ return value; }
+
+KPyObject* KPyBool::__float__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+    if(args->size() != 0){
+        oss << "TypeError: expected 0 arguments, git " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    if(this->value){ return new KPyFloat(1); }
+
+    return new KPyFloat(0);
+}
