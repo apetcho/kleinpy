@@ -36,3 +36,16 @@ std::string KPyBool::to_string(){
     if(value){ return "True"; }
     return "False";
 }
+
+// ---
+KPyObject* KPyBool::__eq__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+    if(args->size() != 1){
+        oss << "TypeError: expected 1 arguments, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    KPyBool *other = (KPyBool*)(*args)[0];
+
+    return new KPyBool(value == other->value);
+}
