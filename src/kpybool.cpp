@@ -54,3 +54,6 @@ KPyObject* KPyBool::__eq__(std::vector<KPyObject*>* args){
 KPyType* KPyBool::get_type(){
     return kpytypes[KPyTypeId::KPY_BOOL_TYPE];
 }
+
+// ---
+bool KPyBool::get_value(){ return value; }
