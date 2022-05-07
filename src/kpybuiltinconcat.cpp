@@ -25,3 +25,8 @@ KPyObject* KPyBuiltinConcat::__call__(std::vector<KPyObject*>* args){
 
     target->call_method("concat", callargs);
 }
+
+// ---
+std::string KPyBuiltinConcat::to_string(){
+    return "concat";
+}
