@@ -22,3 +22,8 @@ KPyBool::KPyBool() : KPyObject(){
 KPyBool::KPyBool(bool value) : KPyBool(){
     this->value = value;
 }
+
+// ---
+KPyBool::KPyBool(const KPyBool& obj) : KPyBool(){
+    this->value = obj.value;
+}
