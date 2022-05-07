@@ -51,7 +51,25 @@ protected:
     virtual KPyObject* __call__(std::vector<KPyObject*>* args) = 0;
 };
 
-// class PyAttr
+// ---------------------
+// --- class KPyAttr ---
+// ---------------------
+class KPyAttr : public KPyCallable{
+public:
+    KPyAttr(KPyObject *self, std::string method);
+    virtual ~KPyAttr();
+    bool allowable_argcount(int count);
+
+    KPyType* get_type();
+    std::string to_string();
+
+protected:
+    std::string method;
+    KPyObject *self;
+
+    virtual KPyObject* __call__(std::vector<KPyObject*>* args);
+}; // KPyAttr
+
 // class PyBool
 // class PyBuiltinConcat
 // class PyBuiltinFPrint
