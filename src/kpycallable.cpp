@@ -11,3 +11,6 @@ KPyCallable::KPyCallable() : KPyObject() {
 
 // --
 KPyCallable::KPyCallable(const KPyCallable& obj){}
+
+// --
+KPyCallable::~KPyCallable(){}
