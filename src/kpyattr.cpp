@@ -18,3 +18,8 @@ KPyAttr::~KPyAttr(){
 KPyType* KPyAttr::get_type(){
     return kpytypes[KPyTypeId::KPY_BUILTIN_TYPE];
 }
+
+// ---
+KPyObject* KPyAttr::__call__(std::vector<KPyObject*>* args){
+    return self->call_method(method, args);
+}
