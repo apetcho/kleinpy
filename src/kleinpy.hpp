@@ -173,8 +173,26 @@ protected:
     virtual KPyObject* __call__(std::vector<KPyObject*>* args);
 };
 
-// class PyBuiltinPrint
-// class PyBuiltinTPrint
+// -----------------------------
+// --- class KPyBuiltinPrint ---
+// -----------------------------
+class KPyBuiltinPrint : public KPyCallable{
+public:
+    KPyBuiltinPrint();
+    KPyBuiltinPrint(const KPyBuiltinPrint& onj);
+    virtual ~KPyBuiltinPrint();
+    KPyType* get_type();
+    bool allowable_argcount(int count);
+    std::string to_string();
+
+protected:
+    KPyObject* __call__(std::vector<KPyObject*>* args);
+};
+
+// -----------------------------
+// --- class PyBuiltinTPrint ---
+// -----------------------------
+
 // class PyByteCode
 // enum PyOpCode
 // class PyCell
