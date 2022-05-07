@@ -47,3 +47,6 @@ KPyType* KPyObject::get_type(){
 
 // --
 void KPyObject::incref(){ refcount++; }
+
+// --
+void KPyObject::decref(){ refcount--; }
