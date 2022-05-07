@@ -139,9 +139,9 @@ protected:
     virtual KPyObject* __call__(std::vector<KPyObject*>* args);
 };
 
-// ---------------------------
-// --- class PyBuiltinIter ---
-// ---------------------------
+// ----------------------------
+// --- class KPyBuiltinIter ---
+// ----------------------------
 class KPyBuiltinIter : public KPyCallable {
 public:
     KPyBuiltinIter();
@@ -156,7 +156,23 @@ protected:
     virtual KPyObject* __call__(std::vector<KPyObject*>* args);
 };
 
-// class PyBuiltinLen
+// ---------------------------
+// --- class KPyBuiltinLen ---
+// ---------------------------
+class KPyBuiltinLen: public KPyCallable{
+public:
+    KPyBuiltinLen();
+    KPyBuiltinLen(const KPyBuiltinLen& obj);
+    virtual ~KPyBuiltinLen();
+    KPyType* get_type();
+
+    bool allowable_argcount(int count);
+    std::string to_string();
+
+protected:
+    virtual KPyObject* __call__(std::vector<KPyObject*>* args);
+};
+
 // class PyBuiltinPrint
 // class PyBuiltinTPrint
 // class PyByteCode
