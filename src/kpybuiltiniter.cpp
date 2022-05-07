@@ -7,3 +7,6 @@ KPyBuiltinIter::KPyBuiltinIter() : KPyCallable(){}
 
 // ---
 KPyBuiltinIter::KPyBuiltinIter(const KPyBuiltinIter& other){}
+
+// ---
+KPyBuiltinIter::~KPyBuiltinIter(){}
