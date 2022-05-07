@@ -1007,6 +1007,21 @@ protected:
 // ----------------------------
 // --- class KPyStrIterator ---
 // ----------------------------
+class KPyStrIterator : public KPyObject{
+public:
+    KPyStrIterator(KPyStr *strobj);
+    virtual ~KPyStrIterator();
+
+    KPyType* get_type();
+    std::string to_string();
+
+private:
+    KPyStr* str;
+    int index;
+
+    virtual KPyObject* __iter__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __next__(std::vector<KPyObject*>* args);
+};
 
 // ---------------------
 // --- class PyTuple ---
