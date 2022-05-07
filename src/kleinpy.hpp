@@ -354,7 +354,47 @@ private:
 // --------------------
 // --- class PyCode ---
 // --------------------
+class KPyCode : public KPyObject{
+public:
+    KPyCode(
+        std::string name, std::vector<KPyCode*>* nestedFn,
+        std::vector<KPyObject*>* consts, std::vector<std::string>* locals,
+        std::vector<std::string>* freeVars, std::vector<std::string>* cellVars,
+        std::vector<std::string>* globals, std::vector<KPyByteCode*>* code,
+        int argcount
+    );
 
+    virtual ~KPyCode();
+
+    std::string get_name() const;
+    std::vector<std::string>& get_locals() const;
+    std::vector<std::string>& get_freeVars() const;
+    std::vector<std::string>& get_cellVars() const;
+    std::vector<std::string>& get_globals() const;
+    std::vector<KPyObject*>& get_consts() const;
+    std::vector<KPyByteCode*>& get_instructions() const;
+    std::vector<KPyCode*>& get_nestedFn() const;
+    int get_nargs() const;
+    int num_locals() const;
+    std::string to_string();
+    std::string pretty_string(std::string indent, bool lineno) const;
+    KPyType* get_type();
+
+    KPyObject* __str__(std::vector<KPyObject*>* args);
+    KPyObject* __type__(std::vector<KPyObject*>* args);
+
+private:
+    std::string name;
+    std::vector<KPyCode*>* nestedFn;
+    std::vector<std::string>* locals;
+    std::vector<std::string>* freeVars;
+    std::vector<std::string>* cellVars;
+    std::vector<std::string>* globals;
+    std::vector<KPyObject*>* consts;
+    std::vector<KPyByteCode*>* instructions;
+
+    int nargs;
+};
 
 // class PyException
 // class PyExceptionType
