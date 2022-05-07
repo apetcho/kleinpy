@@ -7,7 +7,8 @@
 
 
 namespace kleinpy{
-class KPyType;  // foreward declaration
+class KPyType;  // forward declaration
+class KPyFrame;
 
 // -----------------------
 // --- class KPyObject ---
@@ -396,7 +397,37 @@ private:
     int nargs;
 };
 
-// class PyException
+// -------------------------
+// --- class PyException ---
+// -------------------------
+class KPyException : public KPyObject{
+public:
+    KPyException(int exceptType, KPyObject *obj);
+    KPyException(int exceptType, std::string message);
+    virtual ~KPyException();
+    int get_exception_type();
+    void traceback_append(KPyFrame *frame);
+    std::string to_string();
+    KPyType* get_type();
+    KPyObject* get_traceback();
+    void print_traceback();
+
+protected:
+    int exceptionType;
+    KPyObject *value;
+    std::vector<KPyFrame*> traceback;
+
+    virtual KPyObject* __excmatch__(std::vector<KPyObject*>* args);
+};
+
+constexpr int KPYEXCEPTION = 1;
+constexpr int KPYEMPTYSTACKEXCEPTION = 2;
+constexpr int KPYPARSEEXCEPTION = 3;
+constexpr int KPYILLEGALOPERATIONEXCEPTION = 4;
+constexpr int KPYWRONGARGCOUNTEXCEPTION = 5;
+constexpr int KPYSTOPITERATIONEXCEPTION = 6;
+constexpr int KPYMATCHEXCEPTION = 7;
+
 // class PyExceptionType
 // class PyFloat
 // class PyFrame 
