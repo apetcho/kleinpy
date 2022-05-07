@@ -479,9 +479,15 @@ extern std::unordered_map<KPyTypeId, KPyType*, std::hash<int>> kpytypes;
 // ------------------------------
 // --- class KPyExceptionType ---
 // ------------------------------
-//class KPyExceptionType: public KPyType {
-//public:
-//};
+class KPyExceptionType: public KPyType {
+public:
+    KPyExceptionType(std::string typeStr, KPyTypeId id);
+    virtual ~KPyExceptionType();
+    bool allowable_argcount(int count);
+
+protected:
+    KPyObject* __call__(std::vector<KPyObject*>* args);
+};
 
 // class PyFloat
 // class PyFrame 
