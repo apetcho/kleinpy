@@ -684,8 +684,30 @@ protected:
     virtual KPyObject* __append__(std::vector<KPyObject*>* args);
 };
 
-// class PyListIterator
-// class PyNone
+// -----------------------------
+// --- class KPyListIterator ---
+// -----------------------------
+class KPyListIterator : public KPyObject {
+public:
+    KPyListIterator(KPyList* objlist);
+    virtual ~KPyListIterator();
+
+    KPyType* get_type();
+    std::string to_string();
+
+protected:
+    KPyList *objlist;
+    int index;
+
+    virtual KPyObject* __iter__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __next__(std::vector<KPyObject*>* args);
+};
+
+// ---------------------
+// --- class KPyNone ---
+// ---------------------
+
+
 // class PyParser
 // class PyRange
 // class PyRangeIterator
