@@ -209,6 +209,7 @@ protected:
 // ------------------------------
 // --- enum class KPyByteCode ---
 // ------------------------------
+// enum KPyOpCode
 enum class KPyOpCode{
     STOP_CODE,
     NOP,
@@ -335,9 +336,26 @@ protected:
     std::string label;
 };
 
-// enum PyOpCode
-// class PyCell
-// class PyCode
+// ---------------------
+// --- class KPyCell ---
+// ---------------------
+class KPyCell : public KPyObject{
+public:
+    KPyCell(KPyObject *ref);
+    virtual ~KPyCell();
+    KPyObject* deref();
+    void set(KPyObject *ref);
+    KPyType* get_type();
+
+private:
+    KPyObject* ref;
+};
+
+// --------------------
+// --- class PyCode ---
+// --------------------
+
+
 // class PyException
 // class PyExceptionType
 // class PyFloat
