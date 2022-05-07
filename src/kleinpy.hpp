@@ -1046,6 +1046,21 @@ protected:
 // -----------------------------
 // --- class PyTupleIterator ---
 // -----------------------------
+class KPyTupleIterator : public KPyObject{
+public:
+    KPyTupleIterator(KPyTuple* objlist);
+    virtual ~KPyTupleIterator();
+
+    KPyType* get_type();
+    std::string to_string();
+
+protected:
+    KPyTuple *tuple;
+    int index;
+
+    virtual KPyObject* __iter__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __next__(std::vector<KPyObject*>* args);
+};
 
 // --- pyutil ---
 // printMap()
