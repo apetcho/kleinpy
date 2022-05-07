@@ -50,3 +50,6 @@ void KPyObject::incref(){ refcount++; }
 
 // --
 void KPyObject::decref(){ refcount--; }
+
+// --
+int KPyObject::get_refcount() const { return refcount; }
