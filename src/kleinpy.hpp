@@ -1062,8 +1062,20 @@ protected:
     virtual KPyObject* __next__(std::vector<KPyObject*>* args);
 };
 
-// --- pyutil ---
-// printMap()
+// ---------------------------
+// --------- pyutil ----------
+// ---------------------------
+template<typename K, typename V>
+void print_map(const std::unordered_map<K, V>& dict){
+    typename std::unordered_map<K, V>::const_iterator iter;
+
+    for(iter = dict.begin(); iter != dict.end(); iter++){
+        std::cout << 
+            "key: \"" << iter->first << "\" " <<
+            "value: " << iter->second
+        << std::endl;
+    }
+}
 
 }// namespace kleinpy
 #endif
