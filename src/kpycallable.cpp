@@ -7,3 +7,7 @@ KPyCallable::KPyCallable() : KPyObject() {
         &KPyCallable::__call__
     );
 }
+
+
+// --
+KPyCallable::KPyCallable(const KPyCallable& obj){}
