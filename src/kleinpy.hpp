@@ -1,6 +1,7 @@
 #ifndef __KLEINPY_H_
 #define __KLEINPY_H_
 #include<string>
+#include<sstream>
 #include<unordered_map>
 #include<vector>
 #include<iostream>
@@ -862,13 +863,117 @@ protected:
     virtual KPyObject* __call__(std::vector<KPyObject*>* args);
 };
 
-// ------------------------------
-// --- class _KPyStackElement ---
-// ------------------------------
+// ----------------------------
+// --- class __KPyStackNode ---
+// ----------------------------
+template<typename T>
+class __KPyStackNode{
+public:
+    __KPyStackNode(T node);
+    virtual ~__KPyStackNode();
+    T object;
+    __KPyStackNode<T>* next;
+};
 
 // ----------------------
 // --- class KPyStack ---
 // ----------------------
+template<typename T>
+class KPyStack{
+public:
+    KPyStack();
+    virtual ~KPyStack();
+    T pop();
+    void push(T object);
+    T top();
+    bool is_empyty();
+    std::string to_string();
+    int get_count();
+
+private:
+    __KPyStackNode<T>* tos;
+    int count;
+};
+
+template<typename T>
+KPyStack<T>::KPyStack(){ tos = nullptr; }
+
+template<typename T>
+KPyStack<T>::~KPyStack(){
+    if(tos != nullptr){
+        try{ delete tos;}
+        catch(...){}
+    }
+}
+
+template<typename T>
+std::string KPyStack<T>::to_string(){
+    std::stringstream out;
+    out << "top " << std::endl;
+    __KPyStackNode<T>* cursor;
+    cursor = tos;
+    while(cursor != nullptr){
+        out << *(cursor->object) << std::endl;
+        cursor = cursor->next;
+    }
+
+    return out.str();
+}
+
+template<typename T>
+T KPyStack<T>::pop(){
+    if(tos != nullptr){
+        __KPyStackNode<T>* node = tos;
+        T value = node->object;
+        tos = tos->next;
+        node->next = nullptr;
+        delete node;
+        count--;
+        return value;
+    }
+    throw new KPyException(
+        KPYEMPTYSTACKEXCEPTION, "Attempt to pop an empty stack"
+    );
+}
+
+template<typename T>
+void KPyStack<T>::push(T object){
+    __KPyStackNode<T>* node = new __KPyStackNode<T>(object);
+    node->next = tos;
+    tos = node;
+    node++;
+}
+
+template<typename T>
+T KPyStack<T>::top(){
+    if(tos != nullptr){
+        T value = tos->object;
+        return value;
+    }
+
+    throw new KPyException(
+        KPYEMPTYSTACKEXCEPTION, "Attempt to get top of empty stack."
+    );
+}
+
+template<typename T>
+bool KPyStack<T>::is_empyty(){
+    return (tos == nullptr);
+}
+
+template<typename T>
+__KPyStackNode<T>::__KPyStackNode(T obj){
+    object = obj;
+    next = nullptr;
+}
+
+template<typename T>
+__KPyStackNode<T>::~__KPyStackNode(){
+    if(next != nullptr){
+        try{ delete next; }
+        catch(...){}
+    }
+}
 
 // --------------------
 // --- class KPyStr ---
