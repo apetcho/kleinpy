@@ -142,6 +142,19 @@ protected:
 // ---------------------------
 // --- class PyBuiltinIter ---
 // ---------------------------
+class KPyBuiltinIter : public KPyCallable {
+public:
+    KPyBuiltinIter();
+    KPyBuiltinIter(const KPyBuiltinIter& obj);
+    virtual ~KPyBuiltinIter();
+
+    KPyType* get_type();
+    bool allowable_argcount(int count);
+    std::string to_string();
+
+protected:
+    virtual KPyObject* __call__(std::vector<KPyObject*>* args);
+};
 
 // class PyBuiltinLen
 // class PyBuiltinPrint
