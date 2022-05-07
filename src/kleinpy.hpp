@@ -549,6 +549,26 @@ void pop_frame();
 // -------------------------
 // --- class KPyFunction ---
 // -------------------------
+class KPyFunction : public KPyCallable {
+public:
+    KPyFunction(
+        KPyCode& code, std::unordered_map<std::string, KPyObject*>& globals,
+        KPyObject *env
+    );
+    virtual ~KPyFunction();
+
+    KPyType* get_type();
+    bool allowable_argcount(int count);
+    std::string to_string();
+    std::string call_name();
+
+private:
+    KPyCode& code;
+    std::unordered_map<std::string, KPyObject*>& globals;
+    std::unordered_map<std::string, KPyCell*> cellVars;
+
+    KPyObject* __call__(std::vector<KPyObject*>* args);
+};
 
 // class PyFunListElem
 // class PyFunList
