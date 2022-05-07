@@ -662,9 +662,27 @@ protected:
     virtual KPyObject* __bool__(std::vector<KPyObject*>* args);
 };
 
-// --------------------
-// --- class PyList ---
-// --------------------
+// ---------------------
+// --- class KPyList ---
+// ---------------------
+class KPyList : public KPyObject{
+public:
+    KPyList(std::vector<KPyObject*>* obj);
+    virtual ~KPyList();
+    KPyType* get_type();
+    std::string to_string();
+    KPyObject* get_value(int index);
+    void set_value(int index, KPyObject *value);
+
+protected:
+    std::vector<KPyObject*> data;
+
+    virtual KPyObject* __getitem__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __setitem__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __len__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __iter__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __append__(std::vector<KPyObject*>* args);
+};
 
 // class PyListIterator
 // class PyNone
