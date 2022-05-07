@@ -79,6 +79,7 @@ protected:
 class KPyBool : public KPyObject{
 public:
     KPyBool();
+    KPyBool(bool value);
     KPyBool(const KPyBool& obj);
     virtual ~KPyBool();
 

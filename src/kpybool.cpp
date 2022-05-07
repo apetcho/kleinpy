@@ -17,3 +17,8 @@ KPyBool::KPyBool() : KPyObject(){
         &KPyBool::__eq__
     );
 }
+
+// ---
+KPyBool::KPyBool(bool value) : KPyBool(){
+    this->value = value;
+}
