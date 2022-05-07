@@ -92,7 +92,22 @@ protected:
     virtual KPyObject* __eq__(std::vector<KPyObject*>* args);
 };
 
-// class PyBuiltinConcat
+// -----------------------------
+// --- class PyBuiltinConcat ---
+// -----------------------------
+class KPyBuiltinConcat : public KPyCallable{
+public:
+    KPyBuiltinConcat();
+    KPyBuiltinConcat(const KPyBuiltinConcat& obj);
+    virtual ~KPyBuiltinConcat();
+    KPyType* get_type();
+    bool allowable_argcount(int count);
+    std::string to_string();
+
+protected:
+    virtual KPyObject* __call__(std::vector<KPyObject*>* args);
+};
+
 // class PyBuiltinFPrint
 // class PyBuiltinInput
 // class PyBuiltinIter
