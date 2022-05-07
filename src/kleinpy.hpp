@@ -849,16 +849,45 @@ protected:
     virtual KPyObject* __next__(std::vector<KPyObject*>* args);
 };
 
-// class PyRangeType
-// class _PyStackElement
-// class PyStack
-// class PyStr or PyString
-// class PyStrIterator
-// class PyTuple
-// class PyTupleIterator
+// --------------------------
+// --- class KPyRangeType ---
+// --------------------------
+class KPyRangeType : public KPyType{
+public:
+    KPyRangeType(std::string typestr, KPyTypeId id);
+    virtual ~KPyRangeType();
+    bool allowable_argcount(int count);
+
+protected:
+    virtual KPyObject* __call__(std::vector<KPyObject*>* args);
+};
+
+// ------------------------------
+// --- class _KPyStackElement ---
+// ------------------------------
+
+// ----------------------
+// --- class KPyStack ---
+// ----------------------
+
+// --------------------
+// --- class KPyStr ---
+// --------------------
+
+// ----------------------------
+// --- class KPyStrIterator ---
+// ----------------------------
+
+// ---------------------
+// --- class PyTuple ---
+// ---------------------
+
+// -----------------------------
+// --- class PyTupleIterator ---
+// -----------------------------
 
 // --- pyutil ---
 // printMap()
 
-}// namespace mpy
+}// namespace kleinpy
 #endif
