@@ -52,3 +52,8 @@ KPyObject* KPyBuiltinInput::__call__(std::vector<KPyObject*>* args){
 
     return new KPyStr(out.str());
 }
+
+// ---
+std::string KPyBuiltinInput::to_string(){
+    return "input";
+}
