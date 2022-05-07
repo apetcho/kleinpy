@@ -30,6 +30,12 @@ KPyObject* KPyBuiltinIter::__call__(std::vector<KPyObject*>* args){
 
     obj = (*args)[0];
     KPyObject *result = obj->call_method("__iter__", iterargs);
-    
+
     return result;
+}
+
+
+// ---
+std::string KPyBuiltinIter::to_string(){
+    return "iter";
 }
