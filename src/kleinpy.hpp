@@ -108,8 +108,25 @@ protected:
     virtual KPyObject* __call__(std::vector<KPyObject*>* args);
 };
 
-// class PyBuiltinFPrint
-// class PyBuiltinInput
+// -----------------------------
+// --- class PyBuiltinFPrint ---
+// -----------------------------
+class KPyBuiltinFPrint : public KPyCallable{
+public:
+    KPyBuiltinFPrint();
+    KPyBuiltinFPrint(const KPyBuiltinFPrint& obj);
+    virtual ~KPyBuiltinFPrint();
+    KPyType* get_type();
+    std::string to_string();
+
+protected:
+    virtual KPyObject* __call__(std::vector<KPyObject*>* args);
+};
+
+// ----------------------------
+// --- class PyBuiltinInput ---
+// ----------------------------
+
 // class PyBuiltinIter
 // class PyBuiltinLen
 // class PyBuiltinPrint
