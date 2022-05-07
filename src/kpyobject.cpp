@@ -53,3 +53,14 @@ void KPyObject::decref(){ refcount--; }
 
 // --
 int KPyObject::get_refcount() const { return refcount; }
+
+// --
+KPyObject* KPyObject::__str__(std::vector<KPyObject*>* args){
+    std::ostringstream message;
+    if(args->size() != 0){
+        message << "TypeError: excepted 0 arguments, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, message.str());
+    }
+
+    return new KPyStr(to_string());
+}
