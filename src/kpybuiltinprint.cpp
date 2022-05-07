@@ -17,22 +17,27 @@ KPyType* KPyBuiltinPrint::get_type(){
     return kpytypes[KPyTypeId::KPY_BUILTIN_TYPE];
 }
 
-// // ---
-// KPyObject* KPyBuiltinIter::__call__(std::vector<KPyObject*>* args){
-//     std::vector<KPyObject*>* iterargs = new std::vector<KPyObject*>();
-//     KPyObject *obj;
-//     std::ostringstream oss;
+// ---
+KPyObject* KPyBuiltinIter::__call__(std::vector<KPyObject*>* args){
+    std::string output = "";
+    KPyObject *x;
+    KPyObject* y;
+    std::vector<KPyObject*>* strargs = new std::vector<KPyObject*>();
 
-//     if(args->size() != 1){
-//         oss << "TypeError: expected 1 argument, got " << args->size();
-//         throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
-//     }
+    for(int i=0; i < args->size(); i++){
+        x = (*args)[i];
+        y = x->call_method("__str__", strargs);
+        output = y->to_string() + output;
 
-//     obj = (*args)[0];
-//     KPyObject *result = obj->call_method("__iter__", iterargs);
+        if(i < args->size()-1){
+            output = " " + output;
+        }
+    }
 
-//     return result;
-// }
+    std::cout << output << std::endl;
+
+    return new KPyNone();
+}
 
 
 // // ---
