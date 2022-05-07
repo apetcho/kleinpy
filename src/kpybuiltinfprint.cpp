@@ -67,3 +67,8 @@ KPyObject* KPyBuiltinFPrint::__call__(std::vector<KPyObject*>* args){
 
     return this;
 }
+
+// ---
+std::string KPyBuiltinFPrint::to_string(){
+    return "fprint";
+}
