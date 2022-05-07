@@ -615,7 +615,23 @@ protected:
     virtual KPyObject* concat(std::vector<KPyObject*>* args);
 };
 
-// class PyFunListIterator
+// --------------------------------
+// --- class KPyFunListIterator ---
+// --------------------------------
+class KPyFunListIterator: public KPyObject{
+public:
+    KPyFunListIterator(KPyFunList* fnlist);
+    virtual ~KPyFunListIterator();
+    KPyType* get_type();
+    std::string to_string();
+
+protected:
+    KPyFunListNode *node;
+
+    virtual KPyObject* __iter__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __next__(std::vector<KPyObject*>* args);
+};
+
 // class PyInt
 // class PyList
 // class PyListIterator
