@@ -5,8 +5,8 @@ using namespace kleinpy;
 // ---
 KPyBuiltinPrint::KPyBuiltinPrint() : KPyCallable(){}
 
-// // ---
-// KPyBuiltinIter::KPyBuiltinIter(const KPyBuiltinIter& other){}
+// ---
+KPyBuiltinPrint::KPyBuiltinPrint(const KPyBuiltinPrint& other){}
 
 // // ---
 // KPyBuiltinIter::~KPyBuiltinIter(){}
