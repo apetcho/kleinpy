@@ -454,6 +454,28 @@ enum class KPyTypeId{
     KPY_EXCEPTION_TYPE_ID
 };
 
+// ---------------------
+// --- class KPyType ---
+// ---------------------
+class KPyType : public KPyCallable{
+public:
+    KPyType(std::string typeStr, KPyTypeId id);
+    virtual ~KPyType();
+    std::string to_string();
+    KPyType* get_type();
+    KPyTypeId type_id();
+    std::string call_name();
+
+protected:
+    std::string typeStr;
+
+    virtual KPyObject* __call__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __str__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __type__(std::vector<KPyObject*>* args);
+};
+
+extern std::unordered_map<KPyTypeId, KPyType*, std::hash<int>> kpytypes;
+
 // ------------------------------
 // --- class KPyExceptionType ---
 // ------------------------------
