@@ -7,3 +7,6 @@ KPyBuiltinFPrint::KPyBuiltinFPrint() : KPyCallable(){}
 
 // ---
 KPyBuiltinFPrint::KPyBuiltinFPrint(const KPyBuiltinFPrint& other){}
+
+// ---
+KPyBuiltinFPrint::~KPyBuiltinFPrint(){}
