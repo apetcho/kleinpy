@@ -978,6 +978,31 @@ __KPyStackNode<T>::~__KPyStackNode(){
 // --------------------
 // --- class KPyStr ---
 // --------------------
+class KPyStr : public KPyObject{
+public:
+    KPyStr(std::string text);
+    KPyStr(const KPyStr& obj);
+    virtual ~KPyStr();
+    KPyType* get_type();
+    std::string to_string();
+    KPyStr* char_at(int index);
+
+protected:
+    std::string value;
+
+    virtual KPyObject* __add__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __str__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __float__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __int__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __bool__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __funlist__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __eq__(std::vector<KPyObject*>* args);
+    virtual KPyObject* split(std::vector<KPyObject*>* args);
+
+    virtual KPyObject* __getitem__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __len__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __iter__(std::vector<KPyObject*>* args);
+};
 
 // ----------------------------
 // --- class KPyStrIterator ---
