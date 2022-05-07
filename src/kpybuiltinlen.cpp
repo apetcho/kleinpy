@@ -9,7 +9,7 @@ KPyBuiltinLen::KPyBuiltinLen() : KPyCallable(){}
 KPyBuiltinLen::KPyBuiltinLen(const KPyBuiltinLen& other){}
 
 // // ---
-// KPyBuiltinIter::~KPyBuiltinIter(){}
+KPyBuiltinLen::~KPyBuiltinLen(){}
 
 
 // // ---
