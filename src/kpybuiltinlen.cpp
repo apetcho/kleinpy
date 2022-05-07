@@ -17,22 +17,22 @@ KPyType* KPyBuiltinLen::get_type(){
      return kpytypes[KPyTypeId::KPY_BUILTIN_TYPE];
 }
 
-// // ---
-// KPyObject* KPyBuiltinIter::__call__(std::vector<KPyObject*>* args){
-//     std::vector<KPyObject*>* iterargs = new std::vector<KPyObject*>();
-//     KPyObject *obj;
-//     std::ostringstream oss;
+// ---
+KPyObject* KPyBuiltinLen::__call__(std::vector<KPyObject*>* args){
+    KPyObject *obj;
+    std::ostringstream oss;
 
-//     if(args->size() != 1){
-//         oss << "TypeError: expected 1 argument, got " << args->size();
-//         throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
-//     }
+    if(args->size() != 1){
+        oss << "TypeError: expected 1 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
 
-//     obj = (*args)[0];
-//     KPyObject *result = obj->call_method("__iter__", iterargs);
+    obj = (*args)[0];
+    std::vector<KPyObject*>* callargs = new std::vector<KPyObject*>();
+    KPyObject *result = obj->call_method("__len__", callargs);
 
-//     return result;
-// }
+    return result;
+}
 
 
 // // ---
