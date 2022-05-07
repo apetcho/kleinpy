@@ -82,3 +82,8 @@ KPyObject* KPyBool::__int__(std::vector<KPyObject*>* args){
 
     return new KPyInt(0);
 }
+
+// ---
+KPyObject* KPyBool::__bool__(std::vector<KPyObject*>* args){
+    return this;
+}
