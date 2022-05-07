@@ -36,3 +36,6 @@ KPyObject::KPyObject(){
         &KPyObject::__type__
     );
 }
+
+// ---
+KPyObject::~KPyObject(){}
