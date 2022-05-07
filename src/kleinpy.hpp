@@ -1026,6 +1026,22 @@ private:
 // ---------------------
 // --- class PyTuple ---
 // ---------------------
+class KPyTuple : public KPyObject {
+public:
+    KPyTuple(std::vector<KPyObject*>* objlist);
+    virtual ~KPyTuple();
+    KPyType* get_type();
+    std::string to_string();
+    KPyObject* get_value(int index);
+    int size();
+
+protected:
+    std::vector<KPyObject*> data;
+
+    virtual KPyObject* __getitem__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __len__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __iter__(std::vector<KPyObject*>* args);
+};
 
 // -----------------------------
 // --- class PyTupleIterator ---
