@@ -74,3 +74,8 @@ std::vector<std::string>& KPyCode::get_cellVars() const {
 std::vector<std::string>& KPyCode::get_globals() const {
     return *(this->globals);
 }
+
+// ---
+std::vector<KPyObject*>& KPyCode::get_consts() const {
+    return *(this->instructions);
+}
