@@ -25,3 +25,8 @@ KPyType* KPyType::get_type(){
 KPyTypeId KPyType::type_id(){
     return index;
 }
+
+// ---
+std::string KPyType::call_name(){
+    return "type";
+}
