@@ -69,3 +69,8 @@ std::vector<std::string>& KPyCode::get_freeVars() const {
 std::vector<std::string>& KPyCode::get_cellVars() const {
     return *(this->cellVars);
 }
+
+// ---
+std::vector<std::string>& KPyCode::get_globals() const {
+    return *(this->globals);
+}
