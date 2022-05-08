@@ -392,3 +392,8 @@ KPyByteCode::KPyByteCode(const KPyByteCode& other){
 
 // ---
 KPyByteCode::~KPyByteCode(){}
+
+// ---
+KPyOpCode KPyByteCode::get_opcode() const{
+    return this->opcode;
+}
