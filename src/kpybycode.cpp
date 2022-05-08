@@ -402,3 +402,8 @@ KPyOpCode KPyByteCode::get_opcode() const{
 int KPyByteCode::get_operand() const{
     return this->operand;
 }
+
+// ---
+std::string KPyByteCode::get_label() const {
+    return this->label;
+}
