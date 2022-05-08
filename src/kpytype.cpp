@@ -30,3 +30,8 @@ KPyTypeId KPyType::type_id(){
 std::string KPyType::call_name(){
     return "type";
 }
+
+// --
+KPyObject* KPyType::__str__(std::vector<KPyObject*>* args){
+    return new KPyStr("<class '" + to_string() + "'");
+}
