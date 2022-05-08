@@ -84,3 +84,8 @@ std::vector<KPyObject*>& KPyCode::get_consts() const {
 std::vector<KPyByteCode*>& KPyCode::get_instructions() const {
     return *(this->instructions);
 }
+
+// ---
+int KPyCode::get_nargs() const {
+    return this->nargs;
+}
