@@ -339,3 +339,20 @@ const char* opcodenames[] = {
     "CONS_FUNLIST",
     "SELECT_TUPLE"
 };
+
+// ---
+const int numopcodes = sizeof(opcodenames)/sizeof(char*);
+
+// ---
+KPyByteCode::KPyByteCode(std::string opcode){
+    if(opcodemap.find(opcode) == opcodemap.end()){
+        throw new KPyException(
+            KPYILLEGALOPERATIONEXCEPTION,
+            "Unknown opcode " + opcode + " found in file."
+        );
+    }
+
+    this->opcode = opcodemap[opcode];
+    this->operand = -1;
+    this->label = "";
+}
