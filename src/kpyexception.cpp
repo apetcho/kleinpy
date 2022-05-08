@@ -50,3 +50,8 @@ KPyException::~KPyException(){
 int KPyException::get_exception_type(){
     return exceptionType;
 }
+
+// ---
+std::string KPyException::to_string(){
+    return value->to_string();
+}
