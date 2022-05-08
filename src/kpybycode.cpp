@@ -369,3 +369,16 @@ KPyByteCode::KPyByteCode(std::string opcode, int operand){
     this->operand = operand;
     this->label = "";
 }
+
+// ---
+KPyByteCode::KPyByteCode(std::string opcode, std::string label){
+    if(opcodemap.find(opcode) == opcodemap.end()){
+        throw new KPyException(
+            KPYILLEGALOPERATIONEXCEPTION,
+            "Unknown opcode " + opcode + " found in file."
+        );
+    }
+    this->opcode = opcodemap[opcode];
+    this->operand = -1;
+    this->label = label;
+}
