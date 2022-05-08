@@ -35,3 +35,15 @@ std::string KPyType::call_name(){
 KPyObject* KPyType::__str__(std::vector<KPyObject*>* args){
     return new KPyStr("<class '" + to_string() + "'");
 }
+
+// ---
+KPyObject* KPyType::__type__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 0){
+        oss << "TypeError: excpected 0 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    return kpytypes[KPyTypeId::KPY_TYPE_TYPE];
+}
