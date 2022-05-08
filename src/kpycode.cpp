@@ -94,3 +94,28 @@ int KPyCode::get_nargs() const {
 int KPyCode::num_locals() const {
     return this->locals->size();
 }
+
+// ---
+std::string vector_value_to_string(
+    std::string, std::vector<KPyObject*>* objlist
+){
+    std::string result = "";
+    if(objlist->size() > 0){
+        result += name;
+        for(int i=0; i < objlist->size(); i++){
+            KPyObject *obj = (*objlist)[i];
+            if(obj->get_type()->type_id() == KPyTypeId::KPY_STR_TYPE){
+                result += "'" + obj->to_string() + "'";
+            }else{
+                result += (*objlist)[i]->to_string();
+            }
+
+            if(i < objlist->size() - 1){
+                result += ", ";
+            }
+        }
+        result += "\n";
+    }
+
+    return result;
+}
