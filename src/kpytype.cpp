@@ -10,3 +10,8 @@ KPyType::KPyType(std::string typestr, KPyTypeId id) : KPyCallable() {
 
 // ---
 KPyType::~KPyType(){}
+
+// ---
+std::string KPyType::to_string(){
+    return this->typeStr;
+}
