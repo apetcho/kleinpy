@@ -397,3 +397,8 @@ KPyByteCode::~KPyByteCode(){}
 KPyOpCode KPyByteCode::get_opcode() const{
     return this->opcode;
 }
+
+// ---
+int KPyByteCode::get_operand() const{
+    return this->operand;
+}
