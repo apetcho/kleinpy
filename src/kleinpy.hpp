@@ -475,6 +475,7 @@ public:
 
 protected:
     std::string typeStr;
+    KPyTypeId index;
 
     virtual KPyObject* __call__(std::vector<KPyObject*>* args);
     virtual KPyObject* __str__(std::vector<KPyObject*>* args);
