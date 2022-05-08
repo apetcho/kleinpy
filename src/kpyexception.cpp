@@ -69,3 +69,8 @@ void KPyException::print_traceback(){
         std::cerr << traceback[i]->get_code().pretty_string("", true);
     }
 }
+
+// ---
+void KPyException::traceback_append(KPyFrame *frame){
+    traceback.push_back(frame);
+}
