@@ -54,3 +54,8 @@ std::string KPyCode::get_name() const {
 std::vector<KPyCode*>& KPyCode::get_nestedFn() const {
     return *nestedFn;
 }
+
+// ---
+std::vector<std::string>& KPyCode::get_locals() const {
+    return *(this->locals);
+}
