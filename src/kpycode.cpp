@@ -135,3 +135,35 @@ std::string vector_to_string(std::string, std::vector<std::string>* objlist){
 
     return result;
 }
+
+// ---
+std::string KPyCode::pretty_string(std::string indent, bool linenum) const{
+    std::stringstream ss;
+
+    ss << indent << "Function: " << name << "/" << nargs << "\n";
+    if(!linenum){
+        for(int i=0; i < nestedFn->size(); i++){
+            ss << (*nestedFn)[i]->pretty_string(indent + "    ", linenum);
+        }
+    }
+
+    ss << vector_value_to_string(indent + "Constant: ", consts);
+    ss << vector_to_string(indent + "Locals: ", locals);
+    ss << vector_to_string(indent + "FreeVars: ", freeVars);
+    ss << vector_to_string(indent + "CellVars: ", cellVars);
+    ss << vector_to_string(indent + "Globals: ", globals);
+    ss << indent << "BEGIN\n";
+
+    for(int i=0; i < instructions->size(); i++){
+        if(linenum){
+            ss << i << ": ";
+            if(i < 10){ ss << " "; }
+            if(i < 100){ ss << " "; }
+        }
+        ss << indent << (*instructions)[i]->to_string() << "\n";
+    }
+
+    ss << indent + "END\n";
+
+    return ss.str();
+}
