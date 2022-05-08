@@ -59,3 +59,8 @@ std::vector<KPyCode*>& KPyCode::get_nestedFn() const {
 std::vector<std::string>& KPyCode::get_locals() const {
     return *(this->locals);
 }
+
+// ---
+std::vector<std::string>& KPyCode::get_freeVars() const {
+    return *(this->freeVars);
+}
