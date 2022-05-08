@@ -74,3 +74,33 @@ void KPyException::print_traceback(){
 void KPyException::traceback_append(KPyFrame *frame){
     traceback.push_back(frame);
 }
+
+
+// ---
+KPyObject* KPyException::__excmatch__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 1){
+        oss << "TypeError: expected 1 arguments, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    KPyObject *arg = (*args)[0];
+
+    // ---
+    if(this->get_type() == arg){
+        return new KPyBool(true);
+    }
+
+    // ---
+    if(this->get_type() != arg->get_type()){
+        oss << "TypeError: Exception match type mismatch. Expected Exception"
+            << " Object got " << arg->to_string();
+
+        throw new KPyException(KPYILLEGALOPERATIONEXCEPTION, oss.str());
+    }
+
+    KPyException *other = (KPyException*)arg;
+
+    return new KPyBool(this->get_exception_type()==other->get_exception_type());
+}
