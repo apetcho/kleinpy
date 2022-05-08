@@ -22,3 +22,8 @@ KPyObject* KPyCell::deref(){
 void KPyCell::set(KPyObject *ref){
     this->ref = ref;
 }
+
+// ---
+KPyType* KPyCell::get_type(){
+    return kpytypes[KPyTypeId::KPY_CELL_TYPE];
+}
