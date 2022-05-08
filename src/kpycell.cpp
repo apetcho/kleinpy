@@ -17,3 +17,8 @@ KPyCell::~KPyCell(){
 KPyObject* KPyCell::deref(){
     return ref;
 }
+
+// ---
+void KPyCell::set(KPyObject *ref){
+    this->ref = ref;
+}
