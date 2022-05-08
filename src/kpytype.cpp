@@ -15,3 +15,8 @@ KPyType::~KPyType(){}
 std::string KPyType::to_string(){
     return this->typeStr;
 }
+
+// ---
+KPyType* KPyType::get_type(){
+    return kpytypes[KPyTypeId::KPY_TYPE_TYPE];
+}
