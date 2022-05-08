@@ -64,3 +64,8 @@ std::vector<std::string>& KPyCode::get_locals() const {
 std::vector<std::string>& KPyCode::get_freeVars() const {
     return *(this->freeVars);
 }
+
+// ---
+std::vector<std::string>& KPyCode::get_cellVars() const {
+    return *(this->cellVars);
+}
