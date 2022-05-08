@@ -382,3 +382,10 @@ KPyByteCode::KPyByteCode(std::string opcode, std::string label){
     this->operand = -1;
     this->label = label;
 }
+
+// ---
+KPyByteCode::KPyByteCode(const KPyByteCode& other){
+    this->opcode = other.opcode;
+    this->operand = other.operand;
+    this->label = other.label;
+}
