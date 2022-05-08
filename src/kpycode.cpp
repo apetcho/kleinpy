@@ -20,3 +20,27 @@ KPyCode::KPyCode(
     this->nargs =  argcount;
     this->nestedFn = nestedFn;
 }
+
+// ---
+KPyCode::~KPyCode(){
+    try{ delete nestedFn; }
+    catch(...){}
+
+    try{ delete instructions; }
+    catch(...){}
+
+    try{ delete consts; }
+    catch(...){}
+
+    try{ delete globals; }
+    catch(...){}
+
+    try{ delete cellVars; }
+    catch(...){}
+
+    try{ delete freeVars; }
+    catch(...){}
+
+    try{ delete locals; }
+    catch(...){}
+}
