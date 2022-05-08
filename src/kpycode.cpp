@@ -44,3 +44,8 @@ KPyCode::~KPyCode(){
     try{ delete locals; }
     catch(...){}
 }
+
+// ---
+std::string KPyCode::get_name() const {
+    return this->name;
+}
