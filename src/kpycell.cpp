@@ -12,3 +12,8 @@ KPyCell::~KPyCell(){
     try{ delete ref; }
     catch(...){}
 }
+
+// ---
+KPyObject* KPyCell::deref(){
+    return ref;
+}
