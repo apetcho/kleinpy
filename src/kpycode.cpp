@@ -167,3 +167,8 @@ std::string KPyCode::pretty_string(std::string indent, bool linenum) const{
 
     return ss.str();
 }
+
+// ---
+std::string KPyCode::to_string(){
+    return "code(" + this->name + ")";
+}
