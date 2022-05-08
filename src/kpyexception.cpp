@@ -19,3 +19,13 @@ struct names{
 };
 
 static std::unordered_map<int, std::string> exceptmap = names::create_map();
+
+// ---
+
+KPyException::KPyException(int except, KPyObject *obj)
+    : KPyObject(), exceptionType(except), value(obj)
+{
+    dict["__excmatch__"] = (KPyObject * (KPyObject::*)(std::vector<KPyObject))(
+        &KPyException::__excmatch__
+    );
+}
