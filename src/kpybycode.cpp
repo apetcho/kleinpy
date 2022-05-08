@@ -389,3 +389,6 @@ KPyByteCode::KPyByteCode(const KPyByteCode& other){
     this->operand = other.operand;
     this->label = other.label;
 }
+
+// ---
+KPyByteCode::~KPyByteCode(){}
