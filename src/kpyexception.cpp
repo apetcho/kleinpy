@@ -45,3 +45,8 @@ KPyException::~KPyException(){
     try{ delete value; }
     catch(...){}
 }
+
+// ---
+int KPyException::get_exception_type(){
+    return exceptionType;
+}
