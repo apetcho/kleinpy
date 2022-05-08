@@ -407,3 +407,8 @@ int KPyByteCode::get_operand() const{
 std::string KPyByteCode::get_label() const {
     return this->label;
 }
+
+// ---
+std::string KPyByteCode::get_opcode_name() const {
+    return opcodenames[this->opcode];
+}
