@@ -29,3 +29,12 @@ KPyException::KPyException(int except, KPyObject *obj)
         &KPyException::__excmatch__
     );
 }
+
+// ---
+KPyException::KPyException(int except, std::string msg)
+: KPyObject(), exceptionType(except), value(new KPyStr(msg))
+{
+    dict["__excmatch__"]=(KPyObject* (KPyObject::*)(std::vector<KPyObject*>*))(
+        &KPyException::__excmatch__
+    );
+}
