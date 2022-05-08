@@ -431,3 +431,8 @@ std::string KPyByteCode::to_string() const {
 
     return result;
 }
+
+// ---
+int KPyByteCode::nargs(std::string opcode){
+    return argmap[opcode];
+}
