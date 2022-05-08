@@ -79,3 +79,8 @@ std::vector<std::string>& KPyCode::get_globals() const {
 std::vector<KPyObject*>& KPyCode::get_consts() const {
     return *(this->instructions);
 }
+
+// ---
+std::vector<KPyByteCode*>& KPyCode::get_instructions() const {
+    return *(this->instructions);
+}
