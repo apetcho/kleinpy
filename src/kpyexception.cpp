@@ -60,3 +60,12 @@ std::string KPyException::to_string(){
 KPyType* KPyException::get_type(){
     return kpytypes[KPyTypeId::KPY_EXCEPTION_TYPE_ID];
 }
+
+// ---
+void KPyException::print_traceback(){
+    for(int i=0; i < traceback.size(); i++){
+        std::cerr << "============> At PC=" << (traceback[i]->get_pc()-1)
+            << " in this function. " << std::endl;
+        std::cerr << traceback[i]->get_code().pretty_string("", true);
+    }
+}
