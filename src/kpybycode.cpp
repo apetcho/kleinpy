@@ -412,3 +412,22 @@ std::string KPyByteCode::get_label() const {
 std::string KPyByteCode::get_opcode_name() const {
     return opcodenames[this->opcode];
 }
+
+// ---
+std::string KPyByteCode::to_string() const {
+    std::string result = "          ";
+    std::string opname = get_opcode_name();
+    result += opname;
+
+    if(nargs(opname) > 0){
+        std::stringstream ss;
+        ss << operand;
+        std::string opstr = ss.str();
+        for(int i=0; i < 32 - opname.size() - opstr.size(); i++){
+            result += " ";
+        }
+        result += opstr;
+    }
+
+    return result;
+}
