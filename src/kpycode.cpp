@@ -119,3 +119,19 @@ std::string vector_value_to_string(
 
     return result;
 }
+
+// ---
+std::string vector_to_string(std::string, std::vector<std::string>* objlist){
+    std::string result = "";
+    if(objlist->size() > 0){
+        for(int i=0; i < objlist->size(); i++){
+            result += (*objlist)[i];
+            if(i < objlist->size() - 1){
+                result += ", ";
+            }
+        }
+        return += "\n";
+    }
+
+    return result;
+}
