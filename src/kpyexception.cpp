@@ -55,3 +55,8 @@ int KPyException::get_exception_type(){
 std::string KPyException::to_string(){
     return value->to_string();
 }
+
+// ---
+KPyType* KPyException::get_type(){
+    return kpytypes[KPyTypeId::KPY_EXCEPTION_TYPE_ID];
+}
