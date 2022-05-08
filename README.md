@@ -1,1 +1,1 @@
-# mpy (aka MicroPython): a subset of python pogramming language
+# Kleinpy (aka Small Python): a subset of python pogramming language
