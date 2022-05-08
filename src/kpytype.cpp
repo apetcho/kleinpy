@@ -20,3 +20,8 @@ std::string KPyType::to_string(){
 KPyType* KPyType::get_type(){
     return kpytypes[KPyTypeId::KPY_TYPE_TYPE];
 }
+
+// ---
+KPyTypeId KPyType::type_id(){
+    return index;
+}
