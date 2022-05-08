@@ -38,3 +38,10 @@ KPyException::KPyException(int except, std::string msg)
         &KPyException::__excmatch__
     );
 }
+
+
+// ---
+KPyException::~KPyException(){
+    try{ delete value; }
+    catch(...){}
+}
