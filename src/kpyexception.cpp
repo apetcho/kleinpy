@@ -104,3 +104,8 @@ KPyObject* KPyException::__excmatch__(std::vector<KPyObject*>* args){
 
     return new KPyBool(this->get_exception_type()==other->get_exception_type());
 }
+
+// ---
+KPyObject* KPyException::get_traceback(){
+    return new KPyList((std::vector<KPyObject*>*)&traceback);
+}
