@@ -182,3 +182,8 @@ KPyType* KPyCode::get_type(){
 KPyObject* KPyCode::__type__(std::vector<KPyObject*>* args){
     return kpytypes[KPyTypeId::KPY_CODE_TYPE];
 }
+
+// ---
+KPyObject* KPyCode::__str__(std::vector<KPyObject*>* args){
+    return new KPyStr(to_string());
+}
