@@ -47,3 +47,19 @@ KPyObject* KPyType::__type__(std::vector<KPyObject*>* args){
 
     return kpytypes[KPyTypeId::KPY_TYPE_TYPE];
 }
+
+// ---
+KPyObject* KPyType::__call__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 1){
+        oss << "TypeError: expected 1 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    std::vector<KPyObject*>* emptyArgs = new std::vector<KPyObject*>();
+    KPyObject *arg = (*args)[0];
+    std::string funname = "__" + this->to_string() + "__";
+
+    return arg->call_method(funname, emptyArgs);
+}
