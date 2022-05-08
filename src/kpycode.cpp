@@ -89,3 +89,8 @@ std::vector<KPyByteCode*>& KPyCode::get_instructions() const {
 int KPyCode::get_nargs() const {
     return this->nargs;
 }
+
+// ---
+int KPyCode::num_locals() const {
+    return this->locals->size();
+}
