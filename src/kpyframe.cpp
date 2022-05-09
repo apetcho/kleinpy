@@ -565,7 +565,59 @@ KPyObject* KPyFrame::execute(){
             case KPyOpCode::DELETE_FAST:
                 delete locals[code.get_locals()[operand]];
                 break;
+
+            default:
+                throw new KPyException(
+                    KPYILLEGALOPERATIONEXCEPTION,
+                    "Unimplemented instruction: " + inst->get_opcode_name()
+                );
             }
+        }catch(KPyException *ex){
+            int x;
+            bool found = false;
+            while(!found && !blockstack->is_empty()){
+                x = blockstack->pop();
+                if(x < 0){
+                    found = true;
+                    if(verbose){
+                        std::cerr
+                            << "*********************"
+                            << "Handling Exception"
+                            << "*********************" << std::endl;
+                        std::cerr << "The exception was: "
+                            <<  ex->to_string() << std::endl;
+                        std::cerr << "--------------------------"
+                            << "--------------------------------" << std::endl;
+                        std::cerr << "            "
+                            << "The Exception's Traceback" << std::endl;
+                        std::cerr << "--------------------------"
+                            << "--------------------------------" << std::endl;
+                        ex->print_traceback();
+                        std::cerr
+                            << "*********************"
+                            << "End Handling Exception"
+                            << "*********************" << std::endl;
+
+                        opstack->push(ex->get_traceback());
+                        opstack->push(ex);
+                        opstack->push(ex);
+                        pc = -1 * x;
+                        blockstack->push(0);
+                    }
+                }
+                if(!found){
+                    ex->traceback_append(this);
+                    throw ex;
+                }
+            }
+        }catch(...){
+                KPyException *ex = new KPyException(
+                    KPYILLEGALOPERATIONEXCEPTION,
+                    "Unknown Error while executing instruction " +
+                    inst->get_opcode_name()
+                );
+                ex->traceback_append(this);
+                throw ex;
         }
     }
 }
