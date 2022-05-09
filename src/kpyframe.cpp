@@ -456,6 +456,16 @@ KPyObject* KPyFrame::execute(){
                 }
                 opstack->push(new KPyList(args));
                 break;
+
+            case KPyOpCode::BUILD_FUNLIST:
+                args = new std::vector<KPyObject*>();
+                for(i=0; i < operand; i++){
+                    u = safety_pop();
+                    iter = args->begin();
+                    args->insert(iter, u);
+                }
+                opstack->push(new KPyFunList(args));
+                break;
             }
         }
     }
