@@ -197,6 +197,9 @@ KPyObject* KPyFrame::execute(){
             case KPyOpCode::JUMP_FORWARD:
                 pc = operand;
                 break;
+            case KPyOpCode::JUMP_ABSOLUTE:
+                pc = operand;
+                break;
             }
         }
     }
