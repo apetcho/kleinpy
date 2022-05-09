@@ -12,3 +12,6 @@ KPyFunction::KPyFunction(
         cellVars[_code.get_freeVars()[i]] = (KPyCell*)tuple->get_value(i);
     }
 }
+
+// ---
+KPyFunction::~KPyFunction(){}
