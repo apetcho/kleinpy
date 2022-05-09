@@ -622,6 +622,12 @@ KPyObject* KPyFrame::execute(){
     }
 }
 
+// ---
 const KPyCode& KPyFrame::get_code() const {
     return code;
+}
+
+// ---
+int KPyFrame::get_pc() const{
+    return pc;
 }
