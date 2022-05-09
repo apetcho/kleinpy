@@ -181,6 +181,9 @@ KPyObject* KPyFrame::execute(){
             case KPyOpCode::SETUP_LOOP:
                 blockstack->push(operand);
                 break;
+            case KPyOpCode::BREAK_LOOP:
+                pc = blockstack->pop();
+                break;
             }
         }
     }
