@@ -143,6 +143,18 @@ KPyObject* KPyFrame::execute(){
                 u = consts[operand];
                 opstack->push(u);
                 break;
+
+            case KPyOpCode::LOAD_GLOBAL:
+                u = globals[code.get_globals()[operand]];
+                if(u==0){
+                    throw new KPyException(
+                        KPYILLEGALOPERATIONEXCEPTION,
+                        "LOAD_GLOBAL failed to find value " +
+                        code.get_globals()[operand]
+                    );
+                }
+                opstack->push(u);
+                break;
             }
         }
     }
