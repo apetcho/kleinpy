@@ -80,3 +80,18 @@ KPyObject* KPyFloat::__int__(std::vector<KPyObject*>* args){
     int x = (int)this->get_value();
     return new KPyInt(x);
 }
+
+// ---
+KPyObject* KPyFloat::__bool__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 0){
+        oss << "TypeError: excpected 0 arguments, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+    if(this->get_value() == 0.0){
+        return new KPyBool(false);
+    }
+
+    return new KPyBool(true);
+}
