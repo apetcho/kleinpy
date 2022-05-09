@@ -13,3 +13,6 @@ KPyFunListIterator::KPyFunListIterator(KPyFunList *flist) : KPyObject() {
         &KPyFunListIterator::__next__
     );
 }
+
+// ---
+KPyFunListIterator::~KPyFunListIterator(){}
