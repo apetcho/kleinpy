@@ -311,6 +311,20 @@ KPyObject* KPyFrame::execute(){
                         << "an exception for some reason." << std::endl;
                 }
                 break;
+
+            case KPyOpCode::BINARY_FLOOR_DIVIDE:
+                v = safety_pop();
+                u = safety_pop();
+                args = new std::vector<KPyObject*>();
+                args->push_back(v);
+                w = u->call_method("__floordiv__", args);
+                opstack->push(w);
+                try{ delete args; }
+                catch(...){
+                    std::cerr << "Delet of BINARY_FLOOR_DIVIDE args caused "
+                        << "an exception for some reason." << std::endl;
+                }
+                break;
             }
         }
     }
