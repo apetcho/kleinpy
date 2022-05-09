@@ -424,6 +424,28 @@ KPyObject* KPyFrame::execute(){
                 }
                 opstack->push(new KPyTuple(args));
                 break;
+
+            case KPyOpCode::SELECT_TUPLE:
+                u = safety_pop();
+                if(u->get_type()->type_id() != KPyTypeId::KPY_TUPLE_TYPE){
+                    throw new KPyException(
+                        KPYILLEGALOPERATIONEXCEPTION,
+                        "Attempt to select elements of a tuple from "
+                        "non-tuple object."
+                    );
+                }
+                tuple = (KPyTuple*)u;
+                if(operand != tuple->size()){
+                    throw new KPyException(
+                        KPYILLEGALOPERATIONEXCEPTION,
+                        "Attempt to select elements of a tuple with "
+                        "incorrect size."
+                    );
+                }
+                for(i=tuple->size()-1; i >= 0; i--){
+                    opstack->push(tuple->get_value(i));
+                }
+                break;
             }
         }
     }
