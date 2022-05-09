@@ -253,3 +253,29 @@ KPyObject* KPyFunList::__iter__(std::vector<KPyObject*>* args){
 
     return new KPyFunListIterator(this);
 }
+
+// ---
+KPyObject* KPyFunList::__add__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+    if(args->size() != 1){
+        oss << "TypeError: expected 1 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    KPyFunList *other = (KPyFunList*)(*args[0]);
+    KPyStack<KPyObject*> tmpstack;
+    KPyFunListNode *node = data;
+    KPyObject *xvalue;
+
+    while(node != nullptr){
+        tmpstack.push(node->get_head());
+        node = node->get_tail();
+    }
+    node = other->data;
+    while(!tmpstack.is_empty()){
+        xvalue = tmpstack.pop();
+        node = new KPyFunListNode(xvalue, node);
+    }
+
+    new KPyFunList(node);
+}

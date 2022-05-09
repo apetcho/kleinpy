@@ -892,7 +892,7 @@ public:
     T pop();
     void push(T object);
     T top();
-    bool is_empyty();
+    bool is_empty();
     std::string to_string();
     int get_count();
 
@@ -963,7 +963,7 @@ T KPyStack<T>::top(){
 }
 
 template<typename T>
-bool KPyStack<T>::is_empyty(){
+bool KPyStack<T>::is_empty(){
     return (tos == nullptr);
 }
 
