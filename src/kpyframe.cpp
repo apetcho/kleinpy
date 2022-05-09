@@ -94,3 +94,42 @@ std::string KPyFrame::get_cell_name(int index){
 
     return name;
 }
+
+// ---
+KPyObject* KPyFrame::execute(){
+    pc = 0;
+    KPyObject *inst;
+    KPyOpCode opcode;
+    int operand;
+    int i;
+    KPyType *selftype;
+    KPyCell *cell;
+    KPyObject *u;
+    KPyObject *v;
+    KPyObject *w;
+    KPyFunList *fnlist;
+    KPyTuple *tuple;
+    KPyObject *x;
+    KPyObject *y;
+    KPyObject *z;
+    KPyBool *bu;
+    bool handled = false;
+    KPyCallable *fn;
+    std::vector<KPyObject*>* args;
+    std::vector<KPyObject*>::iterator iter;
+    std::string name;
+
+    // register this frame for the signal handler in case a signal occurs.
+    push_frame(this);
+    while(true){
+        inst = code.get_instructions()[pc];
+        pc++;
+        opcode = inst->get_opcode();
+        operand = inst->get_operand();
+        try{
+            switch(opcode){
+            case KPyOpCode::LOAD_FAST:
+            }
+        }
+    }
+}
