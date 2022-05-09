@@ -520,6 +520,11 @@ KPyObject* KPyFrame::execute(){
             case KPyOpCode::SETUP_EXCEPT:
                 blockstack->push(-1*operand);
                 break;
+
+            case KPyOpCode::RAISE_VARARGS:
+                u = safety_pop();
+                throw ((KPyException*)u);
+                break;
             }
         }
     }
