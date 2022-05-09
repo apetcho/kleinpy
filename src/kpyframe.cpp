@@ -505,6 +505,12 @@ KPyObject* KPyFrame::execute(){
                 w = new KPyFunction(*((KPyCode*)u), globals, NULL);
                 opstack->push(w);
                 break;
+
+            case KPyOpCode::STORE_DEREF:
+                u = safety_pop();
+                cell = cellVars[get_cell_name(operand)];
+                cell->set(u);
+                break;
             }
         }
     }
