@@ -18,3 +18,15 @@ KPyFunListNode::~KPyFunListNode(){
     try{ delete tail; }
     catch(...){}
 }
+
+// ---
+std::string KPyFunListNode::to_string(){
+    std::ostringstream oss;
+
+    oss << head->to_string();
+    if(tail != nullptr){
+        oss << ", " << tail->to_string();
+    }
+
+    return oss.str();
+}
