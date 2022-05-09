@@ -57,8 +57,21 @@ KPyFrame::~KPyFrame(){
     catch(...){}
 }
 
-// --
+// ---
 static void terminate(int except, int pc, std::string name){
     throw new KPyException(
         except, "Terminating with exception in function " + name);
+}
+
+// ---
+KPyObject* KPyFrame::safety_pop(){
+    if(opstack->is_empty()){
+        throw new KPyException(
+            KPYILLEGALOPERATIONEXCEPTION,
+            "Attempt to pop empty operand stack in " +
+            code.get_instructions()[pc-1]->get_opcode_name()
+        );
+    }
+
+    return opstack->pop();
 }
