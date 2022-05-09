@@ -296,3 +296,15 @@ KPyObject* KPyFunList::get_head(){
 
     return get_node()->get_head();
 }
+
+// ---
+KPyFunList* KPyFunList::get_tail(){
+    if(data == nullptr){
+        throw new KPyException(
+            KPYILLEGALOPERATIONEXCEPTION,
+            "Attempt to get tail of empty funlist."
+        );
+    }
+
+    return new KPyFunList(get_node()->get_tail());
+}
