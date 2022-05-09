@@ -186,3 +186,15 @@ KPyFunList::~KPyFunList(){}
 KPyType* KPyFunList::get_type(){
     return kpytypes[KPyTypeId::KPY_FUNLIST_TYPE];
 }
+
+// ---
+std::string KPyFunList::to_string(){
+    std::ostringstream oss;
+    oss << "[";
+    if(data != nullptr){
+        oss << data->to_string();
+    }
+    oss << "]";
+
+    return oss.str();
+}
