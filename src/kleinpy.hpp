@@ -688,7 +688,7 @@ protected:
     virtual KPyObject* __setitem__(std::vector<KPyObject*>* args);
     virtual KPyObject* __len__(std::vector<KPyObject*>* args);
     virtual KPyObject* __iter__(std::vector<KPyObject*>* args);
-    virtual KPyObject* __append__(std::vector<KPyObject*>* args);
+    virtual KPyObject* append(std::vector<KPyObject*>* args);
 };
 
 // -----------------------------
