@@ -15,3 +15,6 @@ KPyListIterator::KPyListIterator(KPyList *pylist) : KPyObject(){
         &KPyListIterator::__next__
     );
 }
+
+// ---
+KPyListIterator::~KPyListIterator(){}
