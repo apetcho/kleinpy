@@ -397,6 +397,18 @@ KPyObject* KPyFrame::execute(){
                 opstack->push(w);
                 delete args; //! @todo wrap this in a try .. catch block
                 break;
+
+            case KPyOpCode::STORE_SUBSCR:
+                u = safety_pop();
+                v = safety_pop();
+                w = safety_pop();
+                args = new std::vector<KPyObject*>();
+                args->push_back(u); // the index
+                args->push_back(w); // the item
+                w = v->call_method("__setitem__", args);
+                delete w;
+                delete args;
+                break;
             }
         }
     }
