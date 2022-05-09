@@ -35,3 +35,19 @@ KPyType* KPyList::get_type(){
 void KPyList::set_value(int index, KPyObject *obj){
     data[index] = obj;
 }
+
+// ---
+std::string KPyList::to_string(){
+    std::ostringstream oss;
+
+    oss << "[";
+    for(int i=0; i < data.size(); i++){
+        oss << data[i]->to_string();
+        if(i < data.size()-1){
+            oss << ", ";
+        }
+    }
+    oss << "]";
+
+    return oss.str();
+}
