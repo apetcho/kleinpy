@@ -561,6 +561,10 @@ KPyObject* KPyFrame::execute(){
                     );
                 }
                 break;
+
+            case KPyOpCode::DELETE_FAST:
+                delete locals[code.get_locals()[operand]];
+                break;
             }
         }
     }
