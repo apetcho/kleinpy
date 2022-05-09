@@ -321,3 +321,16 @@ KPyObject* KPyFunList::head(std::vector<KPyObject*>* args){
 
     return get_head();
 }
+
+// ---
+KPyObject* KPyFunList::tail(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+    if(args->size() != 0){
+        if(args->size() != 0){
+            oss << "TypeError: expected 0 argument, got " << args->size();
+            throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+        }
+    }
+
+    return get_tail();
+}
