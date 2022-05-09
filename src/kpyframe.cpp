@@ -550,6 +550,17 @@ KPyObject* KPyFrame::execute(){
                     throw ((KPyException*)u);
                 }
                 break;
+
+            case KPyOpCode::POP_EXCEPT:
+                operand = blockstack->pop();
+                if(operand > 0){
+                    throw new KPyException(
+                        KPYILLEGALOPERATIONEXCEPTION,
+                        "Pop of block stack was for non-exception handling "
+                        "block."
+                    );
+                }
+                break;
             }
         }
     }
