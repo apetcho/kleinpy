@@ -48,3 +48,6 @@ KPyInt::KPyInt(int value) : KPyObject() {
 
 // ---
 KPyInt::KPyInt(const KPyInt& other) : KPyInt(other.value){}
+
+// ---
+KPyInt::~KPyInt(){}
