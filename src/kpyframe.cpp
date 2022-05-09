@@ -56,3 +56,9 @@ KPyFrame::~KPyFrame(){
     try{ delete blockstack; }
     catch(...){}
 }
+
+// --
+static void terminate(int except, int pc, std::string name){
+    throw new KPyException(
+        except, "Terminating with exception in function " + name);
+}
