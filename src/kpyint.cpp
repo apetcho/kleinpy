@@ -283,3 +283,15 @@ KPyObject* KPyInt::__ge__(std::vector<KPyObject*>* args){
 KPyType* KPyInt::get_refcount(){
     return kpytypes[KPyTypeId::KPY_INT_TYPE];
 }
+
+// ---
+KPyObject* KPyInt::__float__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 0){
+        oss << "TypeError: expected 0 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    return new KPyFloat(this->get_value());
+}
