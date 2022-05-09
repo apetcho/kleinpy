@@ -45,3 +45,8 @@ KPyObject* KPyFloat::__float__(std::vector<KPyObject*>* args){
     KPyFloat *arg = (KPyFloat*)(*args)[0];
     return new KPyFloat(this->value + arg->value);
 }
+
+// ---
+KPyType* KPyFloat::get_type(){
+    return kpytypes[KPyTypeId::KPY_FLOAT_TYPE];
+}
