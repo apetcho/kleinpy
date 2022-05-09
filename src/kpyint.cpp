@@ -43,5 +43,8 @@ KPyInt::KPyInt(int value) : KPyObject() {
     dict["__bool__"] = (KPyObject* (KPyObject::*)(std::vectory<KPyObject*>*))(
         &KPyInt::__bool__
     );
-
 }
+
+
+// ---
+KPyInt::KPyInt(const KPyInt& other) : KPyInt(other.value){}
