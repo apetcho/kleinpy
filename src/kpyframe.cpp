@@ -162,6 +162,22 @@ KPyObject* KPyFrame::execute(){
             case KPyOpCode::POP_TOP:
                 u = safety_pop();
                 break;
+            case KPyOpCode::COMPARE_OP:
+                v = safety_pop();
+                u = safety_pop();
+                args = new std::vector<KPyObject*>();
+                args->push_back(v);
+                w = u->call_method(richcomp[operand], args);
+                try{ delete args; }
+                catch(...){
+                    std::cerr << "Delete of COMPARE_OP args caused "
+                        << "an exception from some reason." << std::endl;
+                }
+                opstack->push(w);
+                if(operand == 10){
+                    handled = ((KPyBool*)w)->get_value();
+                }
+                break;
             }
         }
     }
