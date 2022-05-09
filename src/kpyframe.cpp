@@ -466,6 +466,19 @@ KPyObject* KPyFrame::execute(){
                 }
                 opstack->push(new KPyFunList(args));
                 break;
+
+            case KPyOpCode::SELECT_FUNLIST:
+                u = safety_pop();
+                if(u->get_type()->type_id() != KPyTypeId::KPY_FUNLIST_TYPE){
+                    throw new KPyException(
+                        "Attempt to select elements of a funlist from "
+                        "non-funlist object."
+                    );
+                }
+                fnlist = (KPyFunList*)u;
+                opstack->push(fnlist->get_tail());
+                opstack->push(fnlist->get_head());
+                break;
             }
         }
     }
