@@ -30,3 +30,14 @@ std::string KPyFunListIterator::to_string(){
 
     return oss.str();
 }
+
+// ---
+KPyObject* KPyFunListIterator::__iter__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+    if(args->size() != 0){
+        oss << "TypeError: expected 0 arguments, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    return this;
+}
