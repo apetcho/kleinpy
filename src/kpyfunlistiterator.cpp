@@ -41,3 +41,20 @@ KPyObject* KPyFunListIterator::__iter__(std::vector<KPyObject*>* args){
 
     return this;
 }
+
+// ---
+KPyObject* KPyFunListIterator::__next__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 0){
+        oss << "TypeError: expected 0 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    if(node == nullptr){
+        throw new KPyException(KPYSTOPITERATIONEXCEPTION, "Stop Iteration");
+    }
+    KPyObject *item = node->get_head();
+    node = node->get_tail();
+    return item;
+}
