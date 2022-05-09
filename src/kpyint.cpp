@@ -51,3 +51,10 @@ KPyInt::KPyInt(const KPyInt& other) : KPyInt(other.value){}
 
 // ---
 KPyInt::~KPyInt(){}
+
+// ---
+std::string KPyInt::to_string(){
+    std::stringstream ss;
+    ss << value;
+    return ss.str();
+}
