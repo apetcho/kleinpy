@@ -32,3 +32,16 @@ std::string KPyFloat::to_string(){
     ss << buffer;
     return ss.str();
 }
+
+// ---
+KPyObject* KPyFloat::__float__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 1){
+        oss << "TypeError: excepted 1 arguments, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    KPyFloat *arg = (KPyFloat*)(*args)[0];
+    return new KPyFloat(this->value + arg->value);
+}
