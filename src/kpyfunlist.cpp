@@ -9,3 +9,12 @@ KPyFunListNode::KPyFunListNode(KPyObject *head, KPyFunListNode *tail){
     if(tail != nullptr){ len = 1 + tail->len; }
     else{ len = 1; }
 }
+
+// ---
+KPyFunListNode::~KPyFunListNode(){
+    try{ delete head; }
+    catch(...){}
+
+    try{ delete tail; }
+    catch(...){}
+}
