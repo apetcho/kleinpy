@@ -337,6 +337,12 @@ KPyObject* KPyFrame::execute(){
                         << "an exception for some reason." << std::endl;
                 }
                 break;
+            case KPyOpCode::ROT_TWO:
+                u = safety_pop();
+                v = safety_pop();
+                opstack->push(u);
+                opstack->push(v);
+                break;
             }
         }
     }
