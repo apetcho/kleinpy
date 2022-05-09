@@ -386,6 +386,17 @@ KPyObject* KPyFrame::execute(){
                 v = new KPyAttr(u, code.get_globals()[operand]);
                 opstack->push(v);
                 break;
+
+            case KPyOpCode::BINARY_SUBSCR:
+                u = safety_pop();
+                v = safety_pop();
+                args = new std::vector<KPyObject*>();
+                args->push_back(u);
+
+                w = v->call_method("__getitem__", args);
+                opstack->push(w);
+                delete args; //! @todo wrap this in a try .. catch block
+                break;
             }
         }
     }
