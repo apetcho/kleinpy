@@ -414,6 +414,16 @@ KPyObject* KPyFrame::execute(){
                 name = get_cell_name(operand);
                 opstack->push(cellVars[name]);
                 break;
+
+            case KPyOpCode::BUILD_TUPLE:
+                args = new std::vector<KPyObject*>();
+                for(i=0; i < operand; i++){
+                    u = safety_pop();
+                    iter = args->begin();
+                    args->insert(iter, u);
+                }
+                opstack->push(new KPyTuple(args));
+                break;
             }
         }
     }
