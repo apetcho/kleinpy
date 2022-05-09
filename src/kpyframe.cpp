@@ -516,7 +516,10 @@ KPyObject* KPyFrame::execute(){
                 cell = cellVars[get_cell_name(operand)];
                 opstack->push(cell->deref());
                 break;
-                
+
+            case KPyOpCode::SETUP_EXCEPT:
+                blockstack->push(-1*operand);
+                break;
             }
         }
     }
