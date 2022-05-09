@@ -194,6 +194,9 @@ KPyObject* KPyFrame::execute(){
                 }
                 blockstack->pop();
                 break;
+            case KPyOpCode::JUMP_FORWARD:
+                pc = operand;
+                break;
             }
         }
     }
