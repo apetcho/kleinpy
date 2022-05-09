@@ -279,3 +279,8 @@ KPyObject* KPyFunList::__add__(std::vector<KPyObject*>* args){
 
     new KPyFunList(node);
 }
+
+// ---
+KPyFunListNode* KPyFunList::get_node(){
+    return data;
+}
