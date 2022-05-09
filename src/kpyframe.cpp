@@ -159,6 +159,9 @@ KPyObject* KPyFrame::execute(){
                 u = safety_pop();
                 locals[code.get_locals()[operand]] = u;
                 break;
+            case KPyOpCode::POP_TOP:
+                u = safety_pop();
+                break;
             }
         }
     }
