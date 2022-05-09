@@ -409,6 +409,11 @@ KPyObject* KPyFrame::execute(){
                 delete w;
                 delete args;
                 break;
+
+            case KPyOpCode::LOAD_CLOSURE:
+                name = get_cell_name(operand);
+                opstack->push(cellVars[name]);
+                break;
             }
         }
     }
