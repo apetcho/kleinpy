@@ -22,3 +22,6 @@ KPyList::KPyList(std::vector<KPyObject*>* arglist) : KPyObject() {
         &KPyList::append
     );
 }
+
+// ---
+KPyList::~KPyList(){}
