@@ -25,3 +25,8 @@ KPyList::KPyList(std::vector<KPyObject*>* arglist) : KPyObject() {
 
 // ---
 KPyList::~KPyList(){}
+
+// ---
+KPyType* KPyList::get_type(){
+    return kpytypes[KPyTypeId::KPY_LIST_TYPE];
+}
