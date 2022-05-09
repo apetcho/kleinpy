@@ -200,6 +200,27 @@ KPyObject* KPyFrame::execute(){
             case KPyOpCode::JUMP_ABSOLUTE:
                 pc = operand;
                 break;
+            case KPyOpCode::POP_IF_TRUE:
+                if(opstack->is_empty()){
+                    throw new KPyException(
+                        KPYILLEGALOPERATIONEXCEPTION,
+                        "Attempt to pop empty operand stack in "
+                        "POP_JUMP_IF_TRUE."
+                    );
+                }
+                u = safety_pop();
+                if(u->get_type()->to_string() != "bool"){
+                    throw new KPyException(
+                        KPYILLEGALOPERATIONEXCEPTION,
+                        "Illegal TOS value for POP_JUMP_IF_TRUE. "
+                        "Boolean value required."
+                    );
+                }
+                bu = (KPyBool*)u;
+                if(bu->get_value() == true){
+                    pc = operand;
+                }
+                break;
             }
         }
     }
