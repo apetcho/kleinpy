@@ -81,3 +81,25 @@ KPyObject* KPyList::__getitem__(std::vector<KPyObject*>* args){
 
     return data[index];
 }
+
+// ---
+KPyObject* KPyList::__setitem__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 2){
+        oss << "TypeError: expected 2 arguments, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    KPyInt *iobj = (KPyInt*)(*args)[0];
+    int index = iobj->get_value();
+    if(index >= data.size()){
+        throw new KPyException(
+            KPYILLEGALOPERATIONEXCEPTION,
+            "Index out of range."
+        );
+    }
+    data[index] = (*args)[1];
+
+    return new KPyNone();
+}
