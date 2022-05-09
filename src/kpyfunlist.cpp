@@ -284,3 +284,15 @@ KPyObject* KPyFunList::__add__(std::vector<KPyObject*>* args){
 KPyFunListNode* KPyFunList::get_node(){
     return data;
 }
+
+// ---
+KPyObject* KPyFunList::get_head(){
+    if(data == nullptr){
+        throw new KPyException(
+            KPYILLEGALOPERATIONEXCEPTION,
+            "Attempt to get head of empty funlist."
+        );
+    }
+
+    return get_node()->get_head();
+}
