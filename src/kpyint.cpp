@@ -278,3 +278,8 @@ KPyObject* KPyInt::__ge__(std::vector<KPyObject*>* args){
     KPyInt *other = (KPyInt*)args[0];
     return new KPyBool(value >= other->value);
 }
+
+// ---
+KPyType* KPyInt::get_refcount(){
+    return kpytypes[KPyTypeId::KPY_INT_TYPE];
+}
