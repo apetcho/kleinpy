@@ -179,3 +179,42 @@ KPyObject KPyInt::__truediv__(std::vector<KPyObject*>* args){
         );
     }
 }
+
+
+// ---
+KPyObject KPyInt::__floordiv__(std::vector<KPyObject*>* args){
+    KPyInt *iobj;
+    KPyFloat *fobj;
+    std::ostringstream oss;
+    if(args->size() != 1){
+        oss << "TypeError: expected 1 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    KPyObject *arg = (*args)[0];
+    switch(arg->get_type()->type_id()){
+    case KPyTypeId::KPY_INT_TYPE:
+        iobj = (KPyInt*)arg;
+        if(iobj->value == 0){
+            throw new KPyException(
+                KPYILLEGALOPERATIONEXCEPTION,
+                "ZeroDivisionError: integer division or modulo by zero"
+            );
+        }
+        return new KPyInt(this->value / iobj->value);
+    case KPyTypeId::KPY_FLOAT_TYPE:
+        fobj = (KPyFloat*)arg;
+        if(fobj->get_value() == 0){
+            throw new KPyException(
+                KPYILLEGALOPERATIONEXCEPTION,
+                "ZeroDivisionError: integer division or modulo by zero"
+            );
+        }
+        return new KPyFloat(this->value / fobj->get_value());
+    default:
+        throw new KPyException(
+            KPYILLEGALOPERATIONEXCEPTION,
+            "Invalid types for /: int and " + arg->get_type()->to_string()
+        );
+    }
+}
