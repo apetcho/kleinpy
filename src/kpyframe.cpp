@@ -184,6 +184,16 @@ KPyObject* KPyFrame::execute(){
             case KPyOpCode::BREAK_LOOP:
                 pc = blockstack->pop();
                 break;
+
+            case KPyOpCode::POP_BLOCK:
+                if(blockstack->is_empty()){
+                    throw new KPyException(
+                        KPYILLEGALOPERATIONEXCEPTION,
+                        "Attempt to pop empty block stack."
+                    );
+                }
+                blockstack->pop();
+                break;
             }
         }
     }
