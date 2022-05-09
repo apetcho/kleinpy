@@ -16,3 +16,8 @@ KPyFunListIterator::KPyFunListIterator(KPyFunList *flist) : KPyObject() {
 
 // ---
 KPyFunListIterator::~KPyFunListIterator(){}
+
+// ---
+KPyType* KPyFunListIterator::get_type(){
+    return kpytypes[KPyTypeId::KPY_FUNLIST_ITERATOR_TYPE];
+}
