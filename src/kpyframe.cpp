@@ -129,6 +129,16 @@ KPyObject* KPyFrame::execute(){
         try{
             switch(opcode){
             case KPyOpCode::LOAD_FAST:
+                u = locals[code.get_locals()[operand]];
+                if(u==0){
+                    throw new KPyException(
+                        KPYILLEGALOPERATIONEXCEPTION,
+                        "LOAD_FAST failed to find value " +
+                        code.get_locals()[operand]
+                    );
+                }
+                opstack->push(u);
+                break;
             }
         }
     }
