@@ -525,6 +525,18 @@ KPyObject* KPyFrame::execute(){
                 u = safety_pop();
                 throw ((KPyException*)u);
                 break;
+
+            case KPyOpCode::DUP_TOP:
+                if(opstack->is_empty()){
+                    throw new KPyException(
+                        KPYEMPTYSTACKEXCEPTION,
+                        "Attempt to duplicate top entry of empty operand "
+                        "stack."
+                    );
+                }
+                opstack->push(opstack->top());
+                break;
+                
             }
         }
     }
