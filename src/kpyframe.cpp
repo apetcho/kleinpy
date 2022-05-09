@@ -364,6 +364,22 @@ KPyObject* KPyFrame::execute(){
                         << "an exception for some reason." << std::endl;
                 }
                 break;
+
+            case KPyOpCode::CALL_FUNCTION:
+                args = new std::vector<KPyObject*>();
+                for(i=0; i < operand; i++){
+                    u = safety_pop();
+                    args->push_back(u);
+                }
+                u = safety_pop();
+                v = u->call_method("__call__", args);
+                opstack->push(v);
+                try{ delete args; }
+                catch(...){
+                    std::cerr << "Delete of CALL_FUNCTION args caused "
+                        << "and exception for some reason." << std::endl;
+                }
+                break;
             }
         }
     }
