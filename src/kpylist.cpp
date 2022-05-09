@@ -127,3 +127,11 @@ KPyObject* KPyList::__iter__(std::vector<KPyObject*>* args){
 
     return new KPyListIterator(this);
 }
+
+// ---
+KPyObject* KPyList::append(std::vector<KPyObject*>* args){
+    KPyObject *obj = (*args)[0];
+
+    data.push_back(obj);
+    return new KPyNone();
+}
