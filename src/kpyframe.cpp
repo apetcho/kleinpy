@@ -479,6 +479,19 @@ KPyObject* KPyFrame::execute(){
                 opstack->push(fnlist->get_tail());
                 opstack->push(fnlist->get_head());
                 break;
+
+            case KPyOpCode::CONS_FUNLIST:
+                u = safety_pop();
+                v = safety_pop();
+                if(u->get_type()->type_id() != KPyTypeId::KPY_FUNLIST_TYPE){
+                    throw new KPyException(
+                        "Attempt to construct a funlist without a funlist "
+                        "tail."
+                    );
+                }
+                fnlist = (KPyFunList*)u;
+                opstack->push(new KPyFunList(v, fnlist));
+                break;
             }
         }
     }
