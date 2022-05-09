@@ -343,6 +343,27 @@ KPyObject* KPyFrame::execute(){
                 opstack->push(u);
                 opstack->push(v);
                 break;
+
+            case KPyOpCode::FOR_ITER:
+                u = safety_pop();
+                args = new std::vector<KPyObject*>();
+                try{
+                    v = u->call_method("__next__", args);
+                    opstack->push(u);
+                    opstack->push(v);
+                }catch(KPyException *ex){
+                    if(ex->get_exception_type() == KPYSTOPITERATIONEXCEPTION){
+                        pc = operand;
+                    }else{
+                        throw ex;
+                    }
+                }
+                try{ delete args; }
+                catch(...){
+                    std::cerr << "Delete of FOR_ITER args caused "
+                        << "an exception for some reason." << std::endl;
+                }
+                break;
             }
         }
     }
