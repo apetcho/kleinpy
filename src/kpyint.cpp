@@ -230,3 +230,15 @@ KPyObject* KPyInt::__eq__(std::vector<KPyObject*>* args){
     KPyInt *other = (KPyInt*)args[0];
     return new KPyBool(value == other->value);
 }
+
+// ---
+KPyObject* KPyInt::__lt__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+    if(args->size() != 1){
+        oss << "TypeError: expected 1 argument, got " << oss.str();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+    //! @todo: check the type of args[0] before casting it
+    KPyInt *other = (KPyInt*)args[0];
+    return new KPyBool(value < other->value);
+}
