@@ -540,6 +540,16 @@ KPyObject* KPyFrame::execute(){
             case KPyOpCode::SETUP_FINALLY:
                 blockstack->push(-1*operand);
                 break;
+
+            case KPyOpCode::END_FINALLY:
+                if(!handled){
+                    u = safety_pop();
+                    v = safety_pop();
+                    w = safety_pop();
+                    blockstack->pop();
+                    throw ((KPyException*)u);
+                }
+                break;
             }
         }
     }
