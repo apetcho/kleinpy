@@ -178,6 +178,9 @@ KPyObject* KPyFrame::execute(){
                     handled = ((KPyBool*)w)->get_value();
                 }
                 break;
+            case KPyOpCode::SETUP_LOOP:
+                blockstack->push(operand);
+                break;
             }
         }
     }
