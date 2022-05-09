@@ -511,6 +511,12 @@ KPyObject* KPyFrame::execute(){
                 cell = cellVars[get_cell_name(operand)];
                 cell->set(u);
                 break;
+
+            case KPyOpCode::LOAD_DEREF:
+                cell = cellVars[get_cell_name(operand)];
+                opstack->push(cell->deref());
+                break;
+                
             }
         }
     }
