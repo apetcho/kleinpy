@@ -58,3 +58,8 @@ std::string KPyInt::to_string(){
     ss << value;
     return ss.str();
 }
+
+// ---
+int KPyInt::get_value(){
+    return value;
+}
