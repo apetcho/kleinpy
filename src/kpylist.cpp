@@ -30,3 +30,8 @@ KPyList::~KPyList(){}
 KPyType* KPyList::get_type(){
     return kpytypes[KPyTypeId::KPY_LIST_TYPE];
 }
+
+// ---
+void KPyList::set_value(int index, KPyObject *obj){
+    data[index] = obj;
+}
