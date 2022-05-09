@@ -40,3 +40,8 @@ KPyObject* KPyFunListNode::get_head(){
 KPyObject* KPyFunListNode::get_tail(){
     return tail;
 }
+
+// ---
+int KPyFunListNode::get_len(){
+    return len;
+}
