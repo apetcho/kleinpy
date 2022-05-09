@@ -307,3 +307,19 @@ KPyObject* KPyInt::__int__(std::vector<KPyObject*>* args){
 
     return this;
 }
+
+// ---
+KPyObject* KPyInt::__bool__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 0){
+        oss << "TypeError: expected 0 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    if(this->get_value() == 0){
+        return new KPyBool(false);
+    }
+
+    return new KPyBool(true);
+}
