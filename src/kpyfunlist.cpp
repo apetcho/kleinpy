@@ -181,3 +181,8 @@ KPyFunList::KPyFunList(KPyFunListNode *node) : KPyObject() {
 
 // ---
 KPyFunList::~KPyFunList(){}
+
+// ---
+KPyType* KPyFunList::get_type(){
+    return kpytypes[KPyTypeId::KPY_FUNLIST_TYPE];
+}
