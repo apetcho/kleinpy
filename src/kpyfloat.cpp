@@ -17,3 +17,6 @@ KPyFloat::KPyFloat(double value) : KPyObject(){
         &KPyFloat::__bool__
     );
 }
+
+// ---
+KPyFloat::KPyFloat(const KPyFloat& other) : KPyFloat(other.value){}
