@@ -255,6 +255,20 @@ KPyObject* KPyFrame::execute(){
                 pop_frame();
                 return u;
                 break;
+            case KPyOpCode::BINARY_ADD:
+            case KPyOpCode::INPLACE_ADD:
+                v = safety_pop();
+                u = safety_pop();
+                args = new std::vector<KPyObject*>();
+                args->push_back(v);
+                w = u->call_method("__add__", args);
+                opstack->push(w);
+                try{ delete args;}
+                catch(...){
+                    std::cerr << "Delete of BINARY_ADD args caused "
+                        << "an exception for some reason." << std::endl;
+                }
+                break;
             }
         }
     }
