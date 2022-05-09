@@ -21,3 +21,12 @@ KPyFunListIterator::~KPyFunListIterator(){}
 KPyType* KPyFunListIterator::get_type(){
     return kpytypes[KPyTypeId::KPY_FUNLIST_ITERATOR_TYPE];
 }
+
+
+// ---
+std::string KPyFunListIterator::to_string(){
+    std::ostringstream oss;
+    oss << "<funlist_iterator object at " << this << ">";
+
+    return oss.str();
+}
