@@ -325,6 +325,18 @@ KPyObject* KPyFrame::execute(){
                         << "an exception for some reason." << std::endl;
                 }
                 break;
+
+            case KPyOpCode::GET_ITER:
+                u = safety_pop();
+                args = new std::vector<KPyObject*>();
+                v = u->call_method("__iter__", args);
+                opstack->push(v);
+                try{ delete args; }
+                catch(...){
+                    std::cerr << "Delete of GET_ITER args caused "
+                        << "an exception for some reason." << std::endl;
+                }
+                break;
             }
         }
     }
