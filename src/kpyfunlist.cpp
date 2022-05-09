@@ -35,3 +35,8 @@ std::string KPyFunListNode::to_string(){
 KPyObject* KPyFunListNode::get_head(){
     return head;
 }
+
+// ---
+KPyObject* KPyFunListNode::get_tail(){
+    return tail;
+}
