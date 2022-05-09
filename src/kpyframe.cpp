@@ -139,6 +139,10 @@ KPyObject* KPyFrame::execute(){
                 }
                 opstack->push(u);
                 break;
+            case KPyOpCode::LOAD_CONST:
+                u = consts[operand];
+                opstack->push(u);
+                break;
             }
         }
     }
