@@ -344,7 +344,7 @@ KPyObject* KPyFunList::concat(std::vector<KPyObject*>* args){
     }
 
     std::ostringstream strm;
-    KPyFunListNode *node = data;
+    KPyFunListNode *lnode= data; //! FIXME
     while(data != nullptr){
         strm << data->get_head()->to_string();
         data = data->get_tail();
