@@ -198,3 +198,35 @@ std::string KPyFunList::to_string(){
 
     return oss.str();
 }
+
+// ---
+KPyObject* KPyFunList::__getitem__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+    if(args->size() != 1){
+        oss << "TypeError: expected 1 arguments, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    if(data == nullptr){
+        throw new KPyException(
+            KPYILLEGALOPERATIONEXCEPTION,
+            "Attempt to index an empty funlist."
+        );
+    }
+
+    KPyInt *iobj = (KPyInt*)(*args)[0];
+    int index = iobj->get_value();
+    if(index >= data->get_len()){
+        throw new KPyException(
+            KPYILLEGALOPERATIONEXCEPTION,
+            "Index out of range on funlist"
+        );
+    }
+
+    KPyFunListNode *node = data;
+    for(int k=0; k < index; k++){
+        node = node->get_tail();
+    }
+
+    return node->get_head();
+}
