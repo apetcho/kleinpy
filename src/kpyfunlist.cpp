@@ -178,3 +178,6 @@ KPyFunList::KPyFunList(KPyFunListNode *node) : KPyObject() {
         &KPyFunList::concat
     );
 }
+
+// ---
+KPyFunList::~KPyFunList(){}
