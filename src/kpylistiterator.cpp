@@ -18,3 +18,8 @@ KPyListIterator::KPyListIterator(KPyList *pylist) : KPyObject(){
 
 // ---
 KPyListIterator::~KPyListIterator(){}
+
+// ---
+KPyType* KPyListIterator::get_type(){
+    return kpytypes[KPyTypeId::KPY_LIST_ITERATOR_TYPE];
+}
