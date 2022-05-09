@@ -20,3 +20,6 @@ KPyFloat::KPyFloat(double value) : KPyObject(){
 
 // ---
 KPyFloat::KPyFloat(const KPyFloat& other) : KPyFloat(other.value){}
+
+// ---
+KPyFloat::~KPyFloat(){}
