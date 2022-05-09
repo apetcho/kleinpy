@@ -75,3 +75,22 @@ KPyObject* KPyFrame::safety_pop(){
 
     return opstack->pop();
 }
+
+// ---
+std::string KPyFrame::get_cell_name(int index){
+    std::string name;
+
+    if(index < code.get_cellVars().size()){
+        name = code.get_cellVars()[index];
+    }else{
+        if(index - code.get_cellVars().size() >= code.get_freeVars().size()){
+            throw new KPyException(
+                KPYILLEGALOPERATIONEXCEPTION,
+                "Index value out of range on instruction."
+            );
+        }
+        name = code.get_freeVars()[index - code.get_cellVars().size()];
+    }
+
+    return name;
+}
