@@ -15,3 +15,28 @@ KPyFunction::KPyFunction(
 
 // ---
 KPyFunction::~KPyFunction(){}
+
+// ---
+KPyObject* KPyFunction::__call__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != code.get_nargs()){
+        oss << "TypeError: expected " << code.get_nargs() 
+            << " arguments, got " << args->size() << " for function "
+            << code.get_name();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    KPyFrame *frame = new KPyFrame(
+        code, args, globals, code.get_consts(), cellVars
+    );
+
+    KPyObject *result = frame->execute();
+    try{ delete frame; }
+    catch(...){
+        std::cerr << "Frame deletion caused an exception for "
+            << "some reason." << std::endl;
+    }
+
+    return result;
+}
