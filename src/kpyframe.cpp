@@ -499,6 +499,12 @@ KPyObject* KPyFrame::execute(){
                 w = new KPyFunction(*((KPyCode*)u), globals, v);
                 opstack->push(w);
                 break;
+
+            case KPyOpCode::MAKE_FUNCTION:
+                u = safety_pop();
+                w = new KPyFunction(*((KPyCode*)u), globals, NULL);
+                opstack->push(w);
+                break;
             }
         }
     }
