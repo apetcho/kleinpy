@@ -47,3 +47,12 @@ KPyFrame::KPyFrame(
         }
     }
 }
+
+// ---
+KPyFrame::~KPyFrame(){
+    try{ delete opstack; }
+    catch(...){}
+
+    try{ delete blockstack; }
+    catch(...){}
+}
