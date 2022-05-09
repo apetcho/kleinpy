@@ -380,6 +380,12 @@ KPyObject* KPyFrame::execute(){
                         << "and exception for some reason." << std::endl;
                 }
                 break;
+
+            case KPyOpCode::LOAD_ATTR:
+                u = safety_pop);
+                v = new KPyAttr(u, code.get_globals()[operand]);
+                opstack->push(v);
+                break;
             }
         }
     }
