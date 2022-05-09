@@ -50,3 +50,8 @@ KPyType* KPyFunction::get_type(){
 std::string KPyFunction::call_name(){
     return code.get_name();
 }
+
+// ---
+std::string KPyFunction::to_string(){
+    return "Function(" + call_name() + ")";
+}
