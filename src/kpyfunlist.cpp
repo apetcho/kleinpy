@@ -81,3 +81,35 @@ KPyFunList::KPyFunList(std::vector<KPyObject*>* args) : KPyObject(){
         &KPyFunList::concat
     );
 }
+
+// ---
+KPyFunList::KPyFunList() : KPyObject(){
+    data = nullptr;
+    dict["__getitem__"] = (KPyObject* (KPyObject::*)(std::vector<KPyObject*>*))(
+        &KPyFunList::__getitem__
+    );
+
+    dict["__len__"] = (KPyObject* (KPyObject::*)(std::vector<KPyObject*>*))(
+        &KPyFunList::__len__
+    );
+
+    dict["__iter__"] = (KPyObject* (KPyObject::*)(std::vector<KPyObject*>*))(
+        &KPyFunList::__iter__
+    );
+
+    dict["__add__"] = (KPyObject* (KPyObject::*)(std::vector<KPyObject*>*))(
+        &KPyFunList::__add__
+    );
+
+    dict["head"] = (KPyObject* (KPyObject::*)(std::vector<KPyObject*>*))(
+        &KPyFunList::head
+    );
+
+    dict["tail"] = (KPyObject* (KPyObject::*)(std::vector<KPyObject*>*))(
+        &KPyFunList::tail
+    );
+
+    dict["concat"] = (KPyObject* (KPyObject::*)(std::vector<KPyObject*>*))(
+        &KPyFunList::concat
+    );
+}
