@@ -103,3 +103,15 @@ KPyObject* KPyList::__setitem__(std::vector<KPyObject*>* args){
 
     return new KPyNone();
 }
+
+// ---
+KPyObject* KPyList::__len__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 0){
+        oss << "TypeError: expected 0 arguments, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    return new KPyInt(data.size());
+}
