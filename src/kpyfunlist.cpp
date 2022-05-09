@@ -30,3 +30,8 @@ std::string KPyFunListNode::to_string(){
 
     return oss.str();
 }
+
+// ---
+KPyObject* KPyFunListNode::get_head(){
+    return head;
+}
