@@ -243,6 +243,18 @@ KPyObject* KPyFrame::execute(){
                     pc = operand;
                 }
                 break;
+
+            case KPyOpCode::RETURN_VALUE:
+                if(opstack->is_empty()){
+                    throw new KPyException(
+                        KPYILLEGALOPERATIONEXCEPTION,
+                        "Attempt to pop empty operand stack in RETURN_VALUE."
+                    );
+                }
+                u = safety_pop();
+                pop_frame();
+                return u;
+                break;
             }
         }
     }
