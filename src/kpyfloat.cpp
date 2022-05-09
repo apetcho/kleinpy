@@ -34,7 +34,7 @@ std::string KPyFloat::to_string(){
 }
 
 // ---
-KPyObject* KPyFloat::__float__(std::vector<KPyObject*>* args){
+KPyObject* KPyFloat::__add__(std::vector<KPyObject*>* args){
     std::ostringstream oss;
 
     if(args->size() != 1){
@@ -54,4 +54,16 @@ KPyType* KPyFloat::get_type(){
 // ---
 double KPyFloat::get_value(){
     return value;
+}
+
+// ---
+KPyObject* KPyFloat::__float__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 0){
+        oss << "TypeError: excepted 0 arguments, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    return this;
 }
