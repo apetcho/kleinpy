@@ -492,6 +492,13 @@ KPyObject* KPyFrame::execute(){
                 fnlist = (KPyFunList*)u;
                 opstack->push(new KPyFunList(v, fnlist));
                 break;
+
+            case KPyOpCode::MAKE_CLOSURE:
+                u = safety_pop();
+                v = safety_pop();
+                w = new KPyFunction(*((KPyCode*)u), globals, v);
+                opstack->push(w);
+                break;
             }
         }
     }
