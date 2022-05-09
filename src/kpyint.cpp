@@ -115,3 +115,29 @@ KPyObject KPyInt::__sub__(std::vector<KPyObject*>* args){
         );
     }
 }
+
+// ---
+KPyObject KPyInt::__mul__(std::vector<KPyObject*>* args){
+    KPyInt *iobj;
+    KPyFloat *fobj;
+    std::ostringstream oss;
+    if(args->size() != 1){
+        oss << "TypeError: expected 1 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    KPyObject *arg = (*args)[0];
+    switch(arg->get_type()->type_id()){
+    case KPyTypeId::KPY_INT_TYPE:
+        iobj = (KPyInt*)arg;
+        return new KPyInt(this->value * iobj->value);
+    case KPyTypeId::KPY_FLOAT_TYPE:
+        fobj = (KPyFloat*)arg;
+        return new KPyFloat(this->value * fobj->get_value());
+    default:
+        throw new KPyException(
+            KPYILLEGALOPERATIONEXCEPTION,
+            "Invalid types for *: int and " + arg->get_type()->to_string()
+        );
+    }
+}
