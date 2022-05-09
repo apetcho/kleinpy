@@ -230,3 +230,15 @@ KPyObject* KPyFunList::__getitem__(std::vector<KPyObject*>* args){
 
     return node->get_head();
 }
+
+// ---
+KPyObject* KPyFunList::__len__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+    if(args->size() != 0){
+        oss << "TypeError: expected 0 arguments, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+    if(data == nullptr){ return new KPyInt(0); }
+
+    return new KPyInt(data->get_len());
+}
