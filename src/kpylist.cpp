@@ -60,3 +60,24 @@ KPyObject* KPyList::get_value(int index){
 
     return data[index];
 }
+
+// ---
+KPyObject* KPyList::__getitem__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+    if(args->size() != 1){
+        oss << "TypeError: expected 1 arguments, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    KPyInt *iobj = (KPyInt*)(*args)[0];
+    int index = iobj->get_value();
+
+    if(index >= data.size()){
+        throw new KPyException(
+            KPYILLEGALOPERATIONEXCEPTION,
+            "Index out of range"
+        );
+    }
+
+    return data[index];
+}
