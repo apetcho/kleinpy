@@ -67,3 +67,16 @@ KPyObject* KPyFloat::__float__(std::vector<KPyObject*>* args){
 
     return this;
 }
+
+// ---
+KPyObject* KPyFloat::__int__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 0){
+        oss << "TypeError: excepted 0 arguments, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    int x = (int)this->get_value();
+    return new KPyInt(x);
+}
