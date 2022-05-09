@@ -45,3 +45,8 @@ KPyObject* KPyFunction::__call__(std::vector<KPyObject*>* args){
 KPyType* KPyFunction::get_type(){
     return kpytypes[KPyTypeId::KPY_FUNCTION_TYPE];
 }
+
+// ---
+std::string KPyFunction::call_name(){
+    return code.get_name();
+}
