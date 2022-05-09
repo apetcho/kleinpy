@@ -621,3 +621,7 @@ KPyObject* KPyFrame::execute(){
         }
     }
 }
+
+const KPyCode& KPyFrame::get_code() const {
+    return code;
+}
