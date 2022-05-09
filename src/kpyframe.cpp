@@ -536,7 +536,10 @@ KPyObject* KPyFrame::execute(){
                 }
                 opstack->push(opstack->top());
                 break;
-                
+
+            case KPyOpCode::SETUP_FINALLY:
+                blockstack->push(-1*operand);
+                break;
             }
         }
     }
