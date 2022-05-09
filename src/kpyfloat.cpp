@@ -23,3 +23,12 @@ KPyFloat::KPyFloat(const KPyFloat& other) : KPyFloat(other.value){}
 
 // ---
 KPyFloat::~KPyFloat(){}
+
+// ---
+std::string KPyFloat::to_string(){
+    char buffer[50];
+    std::sprintf(buff, "%1.1f", value);
+    std::stringstream ss;
+    ss << buffer;
+    return ss.str();
+}
