@@ -155,6 +155,10 @@ KPyObject* KPyFrame::execute(){
                 }
                 opstack->push(u);
                 break;
+            case KPyOpCode::STORE_FAST:
+                u = safety_pop();
+                locals[code.get_locals()[operand]] = u;
+                break;
             }
         }
     }
