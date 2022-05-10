@@ -21,3 +21,6 @@ std::string KPyToken::get_lex() const { return lex; }
 
 // ---
 int KPyToken::get_colno() const { return colno; }
+
+// ---
+int KPyToken::get_lineno() const { return lineno; }
