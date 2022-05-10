@@ -15,3 +15,6 @@ KPyTuple::KPyTuple(std::vector<KPyObject*>* objlist) : KPyObject() {
         &KPyTuple::__iter__
     );
 }
+
+// ---
+KPyTuple::~KPyTuple(){}
