@@ -19,7 +19,9 @@ int is_letter(char c){
 }
 
 // ---
-int is_white_space(char c){}
+int is_white_space(char c){
+    return (c == ' ' || c == '\t' || c == '\n');
+}
 
 // ---
 int is_digit(char c){
