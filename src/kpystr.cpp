@@ -196,3 +196,23 @@ KPyObject* KPyStr::split(std::vector<KPyObject*>* args){
 
     return new KPyList(strobjs);
 }
+
+// ---
+KPyObject* KPyStr::__getitem__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 1){
+        oss << "TypeError: expected 1 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+    KPyInt *iobj = (KPyInt*)(*args)[0];
+    int index = iobj->get_value();
+    if(index >= value.size()){
+        throw new KPyException(
+            KPYILLEGALOPERATIONEXCEPTION, "Index out of range"
+        );
+    }
+    std::ostringstream ostrm;
+    ostrm << value[index];
+    return new KPyStr(ostrm.str());
+}
