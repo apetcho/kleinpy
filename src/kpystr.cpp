@@ -216,3 +216,14 @@ KPyObject* KPyStr::__getitem__(std::vector<KPyObject*>* args){
     ostrm << value[index];
     return new KPyStr(ostrm.str());
 }
+
+// ---
+KPyObject* KPyStr::__len__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 0){
+        oss << "TypeError: expected 0 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+    return new KPyInt(value.size());
+}
