@@ -17,3 +17,8 @@ KPyTupleIterator::KPyTupleIterator(KPyTuple tuple) : KPyObject() {
 
 // ---
 KPyTupleIterator::~KPyTupleIterator(){}
+
+// ---
+KPyType* KPyTupleIterator::get_type(){
+    return kpytypes[KPyTypeId::KPY_TUPLE_ITERATOR];
+}
