@@ -28,3 +28,13 @@ std::string KPyStrIterator::to_string(){
     oss << "<str_iterator object at " << this << ">";
     return oss.str();
 }
+
+// ---
+KPyObject* KPyStrIterator::__iter__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+    if(args->size() != 0){
+        oss << "TypeError: expected 0 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+    return this;
+}
