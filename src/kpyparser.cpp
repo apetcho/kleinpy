@@ -322,3 +322,23 @@ std::vector<std::string>* KPyParser::idrest(std::vector<std::string> *xlist){
 
     return idlist(xlist);
 }
+
+
+// ---
+std::vector<std::string>* KPyParser::globals_part(){
+    std::vector<std::string> *globals = new std::vector<std::string>();
+
+    KPyToken *token = input->get_token();
+
+    if(token->get_lex() != "Globals"){
+        input->put_back_token();
+        return globals;
+    }
+
+    token = input->get_token();
+    if(token->get_lex() != ":"){
+        bad_token(token, "Expected a ':'.");
+    }
+
+    return idlist(globals);
+}
