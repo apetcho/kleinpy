@@ -21,3 +21,10 @@ KPyStrIterator::~KPyStrIterator(){}
 KPyType* KPyStrIterator::get_type(){
     return kpytypes[KPyTypeId::KPY_STR_ITERATOR_TYPE];
 }
+
+// ---
+std::string KPyStrIterator::to_string(){
+    std::ostringstream oss;
+    oss << "<str_iterator object at " << this << ">";
+    return oss.str();
+}
