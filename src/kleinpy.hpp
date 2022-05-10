@@ -833,7 +833,7 @@ protected:
     int increment;
 
     virtual KPyObject* __iter__(std::vector<KPyObject*>* args);
-    virtual KPyObject* __next__(std::vector<KPyObject*>* args);
+    virtual KPyObject* __len__(std::vector<KPyObject*>* args);
     virtual KPyObject* __getitem__(std::vector<KPyObject*>* args);
     virtual KPyObject* __list__(std::vector<KPyObject*>* args);
 };
