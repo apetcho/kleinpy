@@ -166,3 +166,33 @@ KPyStr* KPyStr::char_at(int index){
     oss << value[index];
     return new KPyStr(oss.str());
 }
+
+// ---
+KPyObject* KPyStr::split(std::vector<KPyObject*>* args){
+    std::string text = " \t\n";
+    if(args->size() == 1){
+        KPyStr *sepObj = (KPyStr*)(*args)[0];
+        text = sepObj->to_string();
+    }
+    std::ostringstream oss;
+    oss << text;
+    std::string delim = oss.str();
+    std::vector<std::string> strvec;
+
+    std::ostringstream ostrm;
+    for(int i=0; i < value.size(); i++){
+        if(delim.find(value[i]) != std::string::npos){
+            strvec.push_back(ostrm.str());
+            ostrm.str("");
+        }else{
+            ostrm << value[i];
+        }
+    }
+    strvec.push_back(ostrm.str());
+    std::vector<KPyObject*>* strobjs = new std::vector<KPyObject*>();
+    for(int i=0; i < strvec.size(); i++){
+        strobjs->push_back(new KPyStr(strvec[i]));
+    }
+
+    return new KPyList(strobjs);
+}
