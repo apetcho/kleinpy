@@ -67,7 +67,7 @@ KPyObject* KPyStr::__float__(std::vector<KPyObject*>* args){
     std::ostringstream oss;
 
     if(args->size() != 0){
-        oss << "TypeError: expected 1 argument, got " << args->size();
+        oss << "TypeError: expected 0 argument, got " << args->size();
         throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
     }
 
@@ -90,7 +90,7 @@ KPyObject* KPyStr::__int__(std::vector<KPyObject*>* args){
     std::ostringstream oss;
 
     if(args->size() != 0){
-        oss << "TypeError: expected 1 argument, got " << args->size();
+        oss << "TypeError: expected 0 argument, got " << args->size();
         throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
     }
 
@@ -109,14 +109,28 @@ KPyObject* KPyStr::__int__(std::vector<KPyObject*>* args){
 }
 
 // ---
-KPyObject* KPyStr::__add__(std::vector<KPyObject*>* args){
+KPyObject* KPyStr::__bool__(std::vector<KPyObject*>* args){
     std::ostringstream oss;
 
     if(args->size() != 0){
-        oss << "TypeError: expected 1 argument, got " << args->size();
+        oss << "TypeError: expected 0 argument, got " << args->size();
         throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
     }
 
     if(this->to_string() == ""){ return new KPyBool(false); }
     return new KPyBool(true);
+}
+
+// ---
+KPyObject* KPyStr::__eq__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 1){
+        oss << "TypeError: expected 1 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    KPyStr *arg = (KPyStr*)(*args)[0];
+    if(this->to_string() == arg->to_string()){ return new KPyBool(true); }
+    return new KPyBool(false);
 }
