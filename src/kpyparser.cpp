@@ -84,3 +84,55 @@ std::vector<KPyCode*>* KPyParser::functionlist(std::vector<KPyCode*>* vec){
 
     return vec;
 }
+
+// ---
+KPyCode* KPyParser::fundef(){
+    KPyToken *token = input->get_token();
+
+    if(token->get_lex() != "Function"){
+        bad_token(token, "Expected Function keyword.");
+    }
+
+    token = input->get_token();
+    if(token->get_lex() != ":"){
+        bad_token(token, "Expected a colon.");
+    }
+
+    KPyToken *funname = input->get_token();
+    if(funname->get_type() != KPYINDENTIFIERTOKEN){
+        bad_token(funname, "Expected an identifier.");
+    }
+
+    token = input->get_token();
+
+    if(token->get_lex() != "/"){
+        bad_token(token, "Expected a '/'");
+    }
+
+    KPyToken *nargstok = input->get_token();
+    int numargs;
+
+    if(nargstok->get_type() != KPYINTEGERTOKEN){
+        bad_token(nargstok, "Expected an integer for the argument count.");
+    }
+
+    std::istringstream nargin(nargstok->get_lex(), std::istringstream::in);
+    nargin.exceptions(std::ios_base::failbit | std::ios_base::badbit);
+    nargin >> numargs;
+
+    std::vector<KPyCode*>* nestedFuncs = new std::vector<KPyCode*>();
+    nestedFuncs = functionlist(nestedFuncs);
+
+    std::vector<KPyObject*>* constants = const_part(nestedFuncs);
+    std::vector<std::string>* locals = locals_part();
+    std::vector<std::string>* freeVars = freeVars_part();
+    std::vector<std::string>* cellVars = cellVars_part();
+    std::vector<std::string>* globals = globals_part();
+
+    std::vector<KPyByteCode*>* instructions = body_part();
+
+    return new KPyCode(
+        funname->get_lex(), nestedFuncs, constants, locals,
+        freeVars, cellVars, globals, instructions, numargs
+    );
+}
