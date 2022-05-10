@@ -56,3 +56,8 @@ KPyObject* KPyStr::__add__(std::vector<KPyObject*>* args){
     KPyStr *arg = (KPyStr*)(*args)[0];
     return new KPyStr(this->value + arg->value);
 }
+
+// ---
+KPyObject* KPyStr::__str__(std::vector<KPyObject*>* args){
+    return this;
+}
