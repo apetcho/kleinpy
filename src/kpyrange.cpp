@@ -59,3 +59,17 @@ KPyObject* KPyRange::__getitem__(std::vector<KPyObject*>* args){
 
     return index_of(idx);
 }
+
+// ---
+KPyObject* KPyRange::index_of(int index){
+    int xvalue = start + index * increment;
+    if(increment > 0 && xvalue >= stop){
+        throw new KPyException(KPYSTOPITERATIONEXCEPTION, "Stop Iteration");
+    }
+
+    if(increment < 0 && xvalue <= stop){
+        throw new KPyException(KPYSTOPITERATIONEXCEPTION, "Stop Iteration");
+    }
+
+    return new KPyInt(start + increment * index);
+}
