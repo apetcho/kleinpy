@@ -21,3 +21,15 @@ KPyRangeIterator::~KPyRangeIterator(){}
 KPyType* KPyRangeIterator::get_type(){
     return kpytypes[KPyTypeId::KPY_RANGE_ITERATOR_TYPE];
 }
+
+// ---
+KPyObject* KPyRangeIterator::__iter__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 0){
+        oss << "TypeError: expected 0 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    return this;
+}
