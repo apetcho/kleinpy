@@ -31,3 +31,8 @@ KPyType* KPyRange::get_type(){
 KPyObject* KPyRange::__iter__(std::vector<KPyObject*>* args){
     return new KPyRangeIterator(this);
 }
+
+// ---
+KPyObject* KPyRange::__len__(std::vector<KPyObject*>* args){
+    return new KPyInt((stop, start)/increment);
+}
