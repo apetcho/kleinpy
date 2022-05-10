@@ -107,3 +107,16 @@ KPyObject* KPyStr::__int__(std::vector<KPyObject*>* args){
         );
     }
 }
+
+// ---
+KPyObject* KPyStr::__add__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 0){
+        oss << "TypeError: expected 1 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    if(this->to_string() == ""){ return new KPyBool(false); }
+    return new KPyBool(true);
+}
