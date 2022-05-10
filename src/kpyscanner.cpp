@@ -187,6 +187,13 @@ KPyToken* KPyScanner::get_token(){
             }
             break;
         case 12:
+            if(c == '\n' || c == -1){
+                colcount = -1;
+                linecount++;
+                state = 0;
+                lex = "";
+            }
+            break;
         }
     }
 }
