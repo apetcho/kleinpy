@@ -182,3 +182,29 @@ std::vector<KPyObject*>* KPyParser::value_rest(
 
     return value_list(constants, nestedFuns);
 }
+
+// ---
+KPyObject* KPyParser::value(std::vector<KPyCode*>* nestedFuncs){
+    int ival;
+    float fval;
+    std::string sval;
+    KPyToken *codeID;
+    std::istringstream *tokstrm;
+
+    KPyToken *token = input->get_token();
+    switch(token->get_type()){
+    case KPYINTEGERTOKEN:
+        tokstrm = new std::istringstream(token->get_lex());
+        tokstrm->exceptions(std::ios_base::failbit | std::ios_base::badbit);
+        (*tokstrm) >> ival;
+        delete tokstrm;
+        return new KPyInt(ival);
+        break;
+    case KPYFLOATTOKEN:
+    case KPYSTRINGTOKEN:
+    case KPYINDENTIFIERTOKEN:
+
+    }
+
+    return nullptr;
+}
