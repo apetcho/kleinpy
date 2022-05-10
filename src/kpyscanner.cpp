@@ -132,6 +132,12 @@ KPyToken* KPyScanner::get_token(){
             foundOne = true;
             break;
         case 5:
+            if(is_digit(c)){ state = 5; }
+            else{
+                type = KPYFLOATTOKEN;
+                foundOne = true;
+            }
+            break;
         case 6:
         case 7:
         case 8:
