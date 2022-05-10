@@ -16,3 +16,8 @@ KPyStrIterator::KPyStrIterator(KPyStr *text) : KPyObject(){
 
 // ---
 KPyStrIterator::~KPyStrIterator(){}
+
+// ---
+KPyType* KPyStrIterator::get_type(){
+    return kpytypes[KPyTypeId::KPY_STR_ITERATOR_TYPE];
+}
