@@ -48,3 +48,15 @@ KPyParser::~KPyParser(){
     try{ delete input; }
     catch(...){}
 }
+
+// ---
+std::vector<KPyCode*>* KPyParser::pyassembly_prog(){
+    std::vector<KPyCode*>* code = functionlist_part();
+    KPyToken *token = input->get_token();
+
+    if(token->get_type() != KPYEOFTOKEN){
+        bad_token(token, "Expected End Of File marker.");
+    }
+
+    return code;
+}
