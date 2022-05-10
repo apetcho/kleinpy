@@ -44,3 +44,18 @@ std::string KPyRange::to_string(){
 
     return oss.str();
 }
+
+// ---
+KPyObject* KPyRange::__getitem__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 1){
+        oss << "TypeError: expected 1 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    KPyInt* idxObj = (KPyInt*)(*args)[0];
+    int idx = idxObj->get_value();
+
+    return index_of(idx);
+}
