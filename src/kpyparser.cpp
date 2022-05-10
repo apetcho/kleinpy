@@ -60,3 +60,13 @@ std::vector<KPyCode*>* KPyParser::pyassembly_prog(){
 
     return code;
 }
+
+// ---
+std::vector<KPyCode*>* KPyParser::functionlist_part(){
+    KPyCode *code = fundef();
+    std::vector<KPyCode*>* vec = new std::vector<KPyCode*>();
+    vec->push_back(code);
+    vec = functionlist(vec);
+
+    return vec;
+}
