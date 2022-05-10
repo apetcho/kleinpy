@@ -9,3 +9,6 @@ KPyToken::KPyToken(int toktype, std::string lex, int lineno, int colno){
     this->toktype = toktype;
     this->lex = lex;
 }
+
+// ---
+KPyToken::~KPyToken(){}
