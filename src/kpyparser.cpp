@@ -373,3 +373,22 @@ std::vector<KPyByteCode*>* KPyParser::body_part(){
 
     return instructions;
 }
+
+// ---
+std::vector<KPyByteCode*>* KPyParser::instruction_list(
+    std::vector<KPyByteCode*>* instructions
+){
+    KPyToken *token = input->get_token();
+    input->put_back_token();
+
+    if(token->get_lex() == "END"){
+        return instructions;
+    }
+
+    KPyByteCode *inst = labeled_instructions();
+
+    instructions->push_back(inst);
+    index++;
+
+    return instruction_list(instructions);
+}
