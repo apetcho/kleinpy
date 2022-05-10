@@ -41,3 +41,13 @@ std::string KPyTuple::to_string(){
 
     return oss.str();
 }
+
+
+// ---
+KPyObject* KPyTuple::get_value(int index){
+    if(index >= data.size()){
+        throw new KPyException(KPYSTOPITERATIONEXCEPTION, "Stop Iteration");
+    }
+
+    return data[index];
+}
