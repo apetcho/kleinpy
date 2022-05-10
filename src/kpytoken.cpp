@@ -12,3 +12,6 @@ KPyToken::KPyToken(int toktype, std::string lex, int lineno, int colno){
 
 // ---
 KPyToken::~KPyToken(){}
+
+// ---
+int KPyToken::get_type() const { return toktype; }
