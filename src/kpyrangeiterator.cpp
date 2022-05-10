@@ -16,3 +16,8 @@ KPyRangeIterator::KPyRangeIterator(KPyRange *obj) : KPyObject() {
 
 // ---
 KPyRangeIterator::~KPyRangeIterator(){}
+
+// ---
+KPyType* KPyRangeIterator::get_type(){
+    return kpytypes[KPyTypeId::KPY_RANGE_ITERATOR_TYPE];
+}
