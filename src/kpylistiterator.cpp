@@ -42,3 +42,14 @@ KPyObject* KPyListIterator::__iter__(std::vector<KPyObject*>* args){
 
     return this;
 }
+
+// ---
+KPyObject* KPyListIterator::__next__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+    if(args->size() != 0){
+        oss << "TypeError: expected 0 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    return objlist->get_value(index++);
+}
