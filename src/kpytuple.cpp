@@ -28,3 +28,16 @@ KPyType* KPyTuple::get_type(){
 int KPyTuple::size(){
     return data.size();
 }
+
+// ---
+std::string KPyTuple::to_string(){
+    std::ostringstream oss;
+    oss << "(";
+    for(int i=0; i < data.size(); i++){
+        oss << data[i]->to_string();
+        if(i < data.size()-1){ oss << ", "; }
+    }
+    oss << ")";
+
+    return oss.str();
+}
