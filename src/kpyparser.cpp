@@ -278,3 +278,22 @@ std::vector<std::string>* KPyParser::freeVars_part(){
 
     return idlist(freeVars);
 }
+
+// ---
+std::vector<std::string>* KPyParser::cellVars_part(){
+    std::vector<std::string>* cellVars = new std::vector<std::string>();
+
+    KPyToken *token = input->get_token();
+
+    if(token->get_lex() != "CellVars"){
+        input->put_back_token();
+        return cellVars;
+    }
+
+    token = input->get_token();
+    if(token->get_lex() != ":"){
+        bad_token(token, "Expected a ':'.");
+    }
+
+    return idlist(cellVars);
+}
