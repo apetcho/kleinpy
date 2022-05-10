@@ -342,3 +342,34 @@ std::vector<std::string>* KPyParser::globals_part(){
 
     return idlist(globals);
 }
+
+// ---
+std::vector<KPyByteCode*>* KPyParser::body_part(){
+    std::vector<KPyByteCode*>* instructions = new std::vector<KPyByteCode*>();
+
+    KPyToken *token = input->get_token();
+    target.clear();
+    index = 0;
+
+    if(token->get_lex() != "BEGIN"){
+        bad_token(token, "Expected a BEGIN keyword.");
+    }
+
+    instructions = instruction_list(instructions);
+    for(int i=0; i < instructions->size(); i++){
+        KPyByteCode *inst = (*instructions)[i];
+        std::string label = inst->get_label();
+        if(label != ""){
+            std::string op = inst->get_opcode_name();
+            (*instructions)[i] = new KPyByteCode(op, target[label]);
+        }
+    }
+
+    token = input->get_token();
+
+    if(token->get_lex() != "END"){
+        bad_token(token, "Expected a END keyword.");
+    }
+
+    return instructions;
+}
