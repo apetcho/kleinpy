@@ -146,3 +146,8 @@ KPyObject* KPyStr::__funlist__(std::vector<KPyObject*>* args){
 
     return result;
 }
+
+// ---
+KPyType* KPyStr::get_type(){
+    return kpytypes[KPyTypeId::KPY_STR_TYPE];
+}
