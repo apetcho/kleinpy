@@ -212,7 +212,33 @@ KPyObject* KPyParser::value(std::vector<KPyCode*>* nestedFuncs){
         return new KPyStr(sval);
         break;
     case KPYINDENTIFIERTOKEN:
-
+        if(token->get_lex() == "None"){ return new KPyNone(); }
+        else if(token->get_lex() == "True"){ return new KPyBool(true); }
+        else if(token->get_lex() == "False"){ return new KPyBool(); }
+        else if(token->get_lex() == "code"){
+            token = input->get_token();
+            if(token->get_lex() != "("){ bad_token(token, "Expected a '('."); }
+            codeID = input->get_token();
+            if(codeID->get_type() != KPYINDENTIFIERTOKEN){
+                bad_token(token, "Expected an identifier.");
+            }
+            token = input->get_token();
+            if(token->get_lex() != ")" ){
+                bad_token(token, "Expected a ')'.");
+            }
+            for(int i=0; i < nestedFuncs->size(); i++){
+                KPyCode *code = (*nestedFuncs)[i];
+                if(code->get_name() == codeID->get_lex()){ return code; }
+            }
+            std::cerr << "Identifier " << codeID->get_lex()
+                << " is not a nested function. " << std::endl;
+            bad_token(codeID, "Must be name of inner function.");
+        }else{
+            bad_token(token, "Expected None, int, float, str, True or False.");
+        }
+    default:
+        bad_token(token, "Expected None, int, float, str, True, or False.");
+        break;
     }
 
     return nullptr;
