@@ -70,3 +70,17 @@ std::vector<KPyCode*>* KPyParser::functionlist_part(){
 
     return vec;
 }
+
+// ---
+std::vector<KPyCode*>* KPyParser::functionlist(std::vector<KPyCode*>* vec){
+    KPyToken *token = input->get_token();
+    input->put_back_token();
+
+    if(token->get_lex() == "Function"){
+        KPyCode *code = fundef();
+        vec->push_back(code);
+        vec = functionlist(vec);
+    }
+
+    return vec;
+}
