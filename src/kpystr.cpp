@@ -43,3 +43,16 @@ KPyStr::KPyStr(const KPyStr& other) : KPyStr(other.value){}
 
 // ---
 KPyStr::~KPyStr(){}
+
+// ---
+KPyObject* KPyStr::__add__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 1){
+        oss << "TypeError: expected 1 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    KPyStr *arg = (KPyStr*)(*args)[0];
+    return new KPyStr(this->value + arg->value);
+}
