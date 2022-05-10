@@ -42,3 +42,9 @@ KPyParser::KPyParser(std::string filename){
 KPyParser::KPyParser(const KPyParser& other){
     this->input = other.input;
 }
+
+// ---
+KPyParser::~KPyParser(){
+    try{ delete input; }
+    catch(...){}
+}
