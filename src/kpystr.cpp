@@ -156,3 +156,13 @@ KPyType* KPyStr::get_type(){
 std::string KPyStr::to_string(){
     return value;
 }
+
+// ---
+KPyStr* KPyStr::char_at(int index){
+    if(index >= value.size()){
+        throw new KPyException(KPYSTOPITERATIONEXCEPTION, "Stop Iteration");
+    }
+    std::ostringstream oss;
+    oss << value[index];
+    return new KPyStr(oss.str());
+}
