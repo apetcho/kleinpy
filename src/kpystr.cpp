@@ -134,3 +134,15 @@ KPyObject* KPyStr::__eq__(std::vector<KPyObject*>* args){
     if(this->to_string() == arg->to_string()){ return new KPyBool(true); }
     return new KPyBool(false);
 }
+
+// ---
+KPyObject* KPyStr::__funlist__(std::vector<KPyObject*>* args){
+    KPyFunList *result = new KPyFunList();
+    for(int k = value.size()-1; k >= 0, k--){
+        std::ostringstream oss;
+        oss << value[k];
+        result = new KPyFunList(new KPyStr(oss.str()), result);
+    }
+
+    return result;
+}
