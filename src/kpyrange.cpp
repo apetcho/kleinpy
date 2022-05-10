@@ -21,3 +21,8 @@ KPyRange::KPyRange(int start, int stop, int step) : KPyObject(){
         &KPyRange::__list__
     );
 }
+
+// ---
+KPyType* KPyRange::get_type(){
+    return kpytypes[KPyTypeId::KPY_RANGE_TYPE_ID]
+}
