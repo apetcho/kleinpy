@@ -18,3 +18,8 @@ KPyTuple::KPyTuple(std::vector<KPyObject*>* objlist) : KPyObject() {
 
 // ---
 KPyTuple::~KPyTuple(){}
+
+// ---
+KPyType* KPyTuple::get_type(){
+    return kpytypes[KPyTypeId::KPY_TUPLE_TYPE];
+}
