@@ -13,5 +13,7 @@ KPyTupleIterator::KPyTupleIterator(KPyTuple tuple) : KPyObject() {
     dict["__next__"] = (KPyObject* (KPyObject::*)(std::vector<KPyObject*>*))(
         &KPyTupleIterator::__next__
     );
-
 }
+
+// ---
+KPyTupleIterator::~KPyTupleIterator(){}
