@@ -84,3 +84,26 @@ KPyObject* KPyStr::__float__(std::vector<KPyObject*>* args){
         );
     }
 }
+
+// ---
+KPyObject* KPyStr::__int__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 0){
+        oss << "TypeError: expected 1 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    int ivalue;
+    try{
+        std::istringstream iss(this->to_string());
+        iss.exceptions(std::ios_base::failbit | std::ios_base::badbit);
+        iss >> ivalue;
+        return new KPyInt(ivalue);
+    }catch(...){
+        throw new KPyException(
+            KPYILLEGALOPERATIONEXCEPTION,
+            "invalid literal for int() with base 10: '" + this->to_string()+"'"
+        );
+    }
+}
