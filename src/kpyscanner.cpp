@@ -128,6 +128,9 @@ KPyToken* KPyScanner::get_token(){
             foundOne = true;
             break;
         case 4:
+            type = KPYCOMMATOKEN;
+            foundOne = true;
+            break;
         case 5:
         case 6:
         case 7:
