@@ -61,3 +61,26 @@ KPyObject* KPyStr::__add__(std::vector<KPyObject*>* args){
 KPyObject* KPyStr::__str__(std::vector<KPyObject*>* args){
     return this;
 }
+
+// ---
+KPyObject* KPyStr::__float__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+
+    if(args->size() != 0){
+        oss << "TypeError: expected 1 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    double xvalue;
+    try{
+        std::istringstream iss(this->to_string());
+        iss.exceptions(std::ios_base::failbit | std::ios_base::badbit);
+        iss >> xvalue;
+        return new KPyFloat(xvalue);
+    }catch(...){
+        throw new KPyException(
+            KPYILLEGALOPERATIONEXCEPTION,
+            "could not convert string to float: '" + this->to_string() + "'"
+        );
+    }
+}
