@@ -139,6 +139,20 @@ KPyToken* KPyScanner::get_token(){
             }
             break;
         case 6:
+            if(c == SINGLE_QUOTE){
+                type = KPYSTRINGTOKEN;
+                lex = lex + c;
+                lex = lex.substr(1, lex.size() - 2);
+                c = istrm->get();
+                foundOne = true;
+                if(istrm->eof()){ type = KPYBADTOKEN; }
+            }else{
+                if(istrm->eof()){
+                    type = KPYBADTOKEN;
+                    foundOne = true;
+                }
+            }
+            break;
         case 7:
         case 8:
         case 9:
