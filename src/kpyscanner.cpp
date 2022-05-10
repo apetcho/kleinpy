@@ -31,3 +31,9 @@ KPyScanner::KPyScanner(std::istream *istrm){
     this->linecount = 1;
     this->error = false;
 }
+
+// ---
+KPyScanner::~KPyScanner(){
+    try{ delete istrm; }
+    catch(...){}
+}
