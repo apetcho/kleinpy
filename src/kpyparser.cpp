@@ -297,3 +297,16 @@ std::vector<std::string>* KPyParser::cellVars_part(){
 
     return idlist(cellVars);
 }
+
+// ---
+std::vector<std::string>* KPyParser::idlist(std::vector<std::string>* xlist){
+    KPyToken *token = input->get_token();
+
+    if(token->get_type() != KPYINDENTIFIERTOKEN){
+        bad_token(token, "Expected an identifier.");
+    }
+
+    xlist->push_back(token->get_lex());
+
+    return idrest(xlist);
+}
