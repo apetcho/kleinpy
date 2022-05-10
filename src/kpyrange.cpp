@@ -73,3 +73,13 @@ KPyObject* KPyRange::index_of(int index){
 
     return new KPyInt(start + increment * index);
 }
+
+// ---
+KPyObject* KPyRange::__list__(std::vector<KPyObject*>* args){
+    std::vector<KPyObject*>* largs = new std::vector<KPyObject*>();
+    for(int i=start; i < stop; i += increment){
+        largs->push_back(new KPyInt(i));
+    }
+
+    return new KPyList(largs);
+}
