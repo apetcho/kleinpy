@@ -136,3 +136,25 @@ KPyCode* KPyParser::fundef(){
         freeVars, cellVars, globals, instructions, numargs
     );
 }
+
+// ---
+std::vector<KPyObject*>* KPyParser::const_part(
+    std::vector<KPyCode*>* nestedFuns
+){
+    std::vector<KPyObject*>* constants = new std::vector<KPyObject*>();
+    KPyToken *token = input->get_token();
+
+    if(token->get_lex() != "Constants"){
+        input->put_back_token();
+        return constants;
+    }
+
+    token = input->get_token();
+    if(token->get_lex() != ":"){
+        bad_token(token, "Expected a ':'.");
+    }
+
+    constants = value_list(constants, nestedFuns);
+
+    return constants;
+}
