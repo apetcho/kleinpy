@@ -168,3 +168,17 @@ std::vector<KPyObject*>* KPyParser::value_list(
     constants = value_rest(constants, nestedFuncs);
     return constants;
 }
+
+// ---
+std::vector<KPyObject*>* KPyParser::value_rest(
+    std::vector<KPyObject*>* constants, std::vector<KPyCode*>* nestedFuns
+){
+    KPyToken *token = input->get_token();
+
+    if(token->get_lex() != ","){
+        input->put_back_token();
+        return constants;
+    }
+
+    return value_list(constants, nestedFuns);
+}
