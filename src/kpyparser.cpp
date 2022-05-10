@@ -201,6 +201,12 @@ KPyObject* KPyParser::value(std::vector<KPyCode*>* nestedFuncs){
         return new KPyInt(ival);
         break;
     case KPYFLOATTOKEN:
+        tokstrm = new std::istringstream(token->get_lex());
+        tokstrm->exceptions(std::ios_base::failbit | std::ios_base::badbit);
+        (*tokstrm) >> fval;
+        delete tokstrm;
+        return new KPyFloat(fval);
+        break;
     case KPYSTRINGTOKEN:
     case KPYINDENTIFIERTOKEN:
 
