@@ -40,3 +40,6 @@ KPyStr::KPyStr(std::string txt) : KPyObject(){
 
 // ---
 KPyStr::KPyStr(const KPyStr& other) : KPyStr(other.value){}
+
+// ---
+KPyStr::~KPyStr(){}
