@@ -23,3 +23,8 @@ KPyTuple::~KPyTuple(){}
 KPyType* KPyTuple::get_type(){
     return kpytypes[KPyTypeId::KPY_TUPLE_TYPE];
 }
+
+// ---
+int KPyTuple::size(){
+    return data.size();
+}
