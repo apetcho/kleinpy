@@ -168,6 +168,9 @@ KPyToken* KPyScanner::get_token(){
             }
             break;
         case 8:
+            foundOne = true;
+            type = KPYSLASHTOKEN;
+            break;
         case 9:
         case 10:
         case 11:
