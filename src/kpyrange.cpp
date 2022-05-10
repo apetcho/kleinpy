@@ -36,3 +36,11 @@ KPyObject* KPyRange::__iter__(std::vector<KPyObject*>* args){
 KPyObject* KPyRange::__len__(std::vector<KPyObject*>* args){
     return new KPyInt((stop, start)/increment);
 }
+
+// ---
+std::string KPyRange::to_string(){
+    std::ostringstream oss;
+    oss << "range(" << start << ", " << stop << ", " << increment << ")";
+
+    return oss.str();
+}
