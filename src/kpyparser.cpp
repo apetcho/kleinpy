@@ -392,3 +392,55 @@ std::vector<KPyByteCode*>* KPyParser::instruction_list(
 
     return instruction_list(instructions);
 }
+
+// ---
+KPyByteCode* KPyParser::labeled_instructions(){
+    KPyToken *tok1 = input->get_token();
+    std::string tok1lex = tok1->get_lex();
+
+    KPyToken *tok2 = input->get_token();
+    std::string tok2lex = tok2->get_lex();
+
+    if(tok2lex == ":"){
+        if(target.find(tok1lex) == target.end()){
+            target[tok1lex] = index;
+        }else{
+            bad_token(tok1, "Duplicate label found.");
+        }
+        return labeled_instructions();
+    }
+
+    int argcount = 0;
+    try{
+        argcount = KPyByteCode::nargs(tok1lex);
+    }catch(int e){
+        bad_token(tok1, "Illegal opcode.");
+    }
+
+    if(argcount == 0){
+        input->put_back_token();
+        return new KPyByteCode(tok1lex);
+    }
+
+    if(tok2->get_type() == KPYINDENTIFIERTOKEN){
+        try{
+            return new KPyByteCode(tok1lex, tok2lex);
+        }catch(int e){
+            bad_token(tok2, "Illegal opcode.");
+        }
+    }
+
+    if(tok2->get_type() == KPYINTEGERTOKEN){
+        try{
+            int operand;
+            std::stringstream(tok2lex) >> operand;
+            return new KPyByteCode(tok1lex, operand);
+        }catch(int e){
+            bad_token(tok1, "Illegal opcode.");
+        }
+    }
+
+    bad_token(tok1, "Instruction Syntax Error.");
+
+    return nullptr;
+}
