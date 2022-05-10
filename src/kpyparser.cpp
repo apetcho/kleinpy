@@ -243,3 +243,20 @@ KPyObject* KPyParser::value(std::vector<KPyCode*>* nestedFuncs){
 
     return nullptr;
 }
+
+// ---
+std::vector<std::string>* KPyParser::locals_part(){
+    std::vector<std::string>* locals = new std::vector<std::string>();
+    KPyToken *token = input->get_token();
+
+    if(token->get_lex() != "Locals"){
+        input->put_back_token();
+        return locals;
+    }
+
+    token = input->get_token();
+    if(token->get_lex() != ":"){
+        bad_token(token, "Expected a ':'.");
+    }
+    return idlist(locals);
+}
