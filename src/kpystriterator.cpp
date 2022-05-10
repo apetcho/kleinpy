@@ -13,3 +13,6 @@ KPyStrIterator::KPyStrIterator(KPyStr *text) : KPyObject(){
         &KPyStrIterator::__next__
     );
 }
+
+// ---
+KPyStrIterator::~KPyStrIterator(){}
