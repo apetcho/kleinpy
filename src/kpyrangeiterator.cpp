@@ -33,3 +33,10 @@ KPyObject* KPyRangeIterator::__iter__(std::vector<KPyObject*>* args){
 
     return this;
 }
+
+// ---
+std::string KPyRangeIterator::to_string(){
+    std::ostringstream oss;
+    oss << "<range_iterator object at " << this << ">";
+    return oss.str();
+}
