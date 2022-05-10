@@ -791,7 +791,7 @@ private:
 
     std::unordered_map<std::string, int> target;
     int index;
-    std::vector<KPyCode*>* pyassemble_prog();
+    std::vector<KPyCode*>* pyassembly_prog();
     std::vector<KPyCode*>* functionlist_part();
     std::vector<KPyCode*>* functionlist(std::vector<KPyCode*>* vec);
 
