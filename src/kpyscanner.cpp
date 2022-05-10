@@ -212,3 +212,8 @@ KPyToken* KPyScanner::get_token(){
 
     return token;
 }
+
+// ---
+void KPyScanner::put_back_token(){
+    needtok = false;
+}
