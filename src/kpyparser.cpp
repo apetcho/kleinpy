@@ -37,3 +37,8 @@ KPyParser::KPyParser(std::string filename){
     std::istream *stream = new std::ifstream(filename);
     this->input = new KPyScanner(stream);
 }
+
+// ---
+KPyParser::KPyParser(const KPyParser& other){
+    this->input = other.input;
+}
