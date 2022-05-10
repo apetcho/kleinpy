@@ -208,6 +208,9 @@ KPyObject* KPyParser::value(std::vector<KPyCode*>* nestedFuncs){
         return new KPyFloat(fval);
         break;
     case KPYSTRINGTOKEN:
+        sval = token->get_lex();
+        return new KPyStr(sval);
+        break;
     case KPYINDENTIFIERTOKEN:
 
     }
