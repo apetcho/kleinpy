@@ -124,6 +124,9 @@ KPyToken* KPyScanner::get_token(){
             }
             break;
         case 3:
+            type = KPYCOLONTOKEN;
+            foundOne = true;
+            break;
         case 4:
         case 5:
         case 6:
