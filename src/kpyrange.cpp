@@ -26,3 +26,8 @@ KPyRange::KPyRange(int start, int stop, int step) : KPyObject(){
 KPyType* KPyRange::get_type(){
     return kpytypes[KPyTypeId::KPY_RANGE_TYPE_ID]
 }
+
+// ---
+KPyObject* KPyRange::__iter__(std::vector<KPyObject*>* args){
+    return new KPyRangeIterator(this);
+}
