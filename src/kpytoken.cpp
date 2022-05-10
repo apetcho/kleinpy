@@ -18,3 +18,6 @@ int KPyToken::get_type() const { return toktype; }
 
 // ---
 std::string KPyToken::get_lex() const { return lex; }
+
+// ---
+int KPyToken::get_colno() const { return colno; }
