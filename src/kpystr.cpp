@@ -37,3 +37,6 @@ KPyStr::KPyStr(std::string txt) : KPyObject(){
         &KPyStr::__iter__
     );
 }
+
+// ---
+KPyStr::KPyStr(const KPyStr& other) : KPyStr(other.value){}
