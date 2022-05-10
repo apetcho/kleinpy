@@ -101,6 +101,20 @@ KPyToken* KPyScanner::get_token(){
             }
             break;
         case 1:
+            if(is_letter(c) || is_digit(c)){ state = 1; }
+            else{
+                for(k=0; k < NUMBER_OF_KEYWORDS; k++){
+                    if(lex == Keywords[k]){
+                        foundOne = true;
+                        type = KPYKEYWORDTOKEN;
+                    }
+                }
+                if(!foundOne){
+                    type = KPYINDENTIFIERTOKEN;
+                    foundOne = true;
+                }
+            }
+            break;
         case 2:
         case 3:
         case 4:
