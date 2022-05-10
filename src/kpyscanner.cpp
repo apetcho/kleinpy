@@ -19,6 +19,9 @@ int is_letter(char c){
 }
 
 // ---
+int is_white_space(char c){}
+
+// ---
 int is_digit(char c){
     return (c >= '0' && c < <= '9');
 }
@@ -36,4 +39,77 @@ KPyScanner::KPyScanner(std::istream *istrm){
 KPyScanner::~KPyScanner(){
     try{ delete istrm; }
     catch(...){}
+}
+
+// ---
+KPyToken* KPyScanner::get_token(){
+    if(!needtok){
+        needtok = true;
+        return lasttok;
+    }
+
+    KPyToken *token;
+    int state = 0;
+    bool foundOne = false;
+    char c;
+    std::string lex;
+    int type;
+    int k;
+    int column, line;
+
+    c = istrm->get();
+    while(!foundOne){
+        colcount++;
+        switch(state){
+        case 0:
+            lex = "";
+            column = colcount;
+            line = linecount;
+            if(is_letter(c)){ state = 1; }
+            else if(is_digit(c)) { state = 2; }
+            else if(c == '-'){ state = 11: }
+            else if(c == ':'){ state = 3; }
+            else if(c == ','){ state = 4; }
+            else if(c == SINGLE_QUOTE){ state = 6; }
+            else if(c == '"'){ state = 7; }
+            else if(c == '/'){ state = 8; }
+            else if(c == '('){ state = 9; }
+            else if(c == ')'){ state = 10; }
+            else if(c =0 ';'){ state = 12; }
+            else if(c == -1){
+                foundOne = true;
+                type = KPYEOFTOKEN;
+            }else if(c == '\n'){
+                colcount = -1;
+                linecount++;
+            }else if(is_white_space(c)){}
+            else if (istrm->eof()){
+                foundOne = true;
+                type = KPYEOFTOKEN;
+            }else{
+                if(!error){
+                    std::cerr << "Unrecognized character '" << c
+                        << "' found at line " << line << " and column "
+                        << column << std::endl;
+                    error = true;
+                }
+                type = KPYBADTOKEN;
+                lex = c;
+                foundOne = true;
+            }
+            break;
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+        }
+    }
 }

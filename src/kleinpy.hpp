@@ -763,6 +763,7 @@ class KPyScanner {
 public:
     KPyScanner(std::istream *istrm);
     virtual ~KPyScanner();
+    KPyToken* get_token();
     void put_back_token();
 
 private:
