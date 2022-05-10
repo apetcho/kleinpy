@@ -116,6 +116,13 @@ KPyToken* KPyScanner::get_token(){
             }
             break;
         case 2:
+            if(is_digit(c)){ state = 2; }
+            else if(c == '.'){ state = 5; }
+            else {
+                type = KPYINDENTIFIERTOKEN;
+                foundOne = true;
+            }
+            break;
         case 3:
         case 4:
         case 5:
