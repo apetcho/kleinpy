@@ -260,3 +260,21 @@ std::vector<std::string>* KPyParser::locals_part(){
     }
     return idlist(locals);
 }
+
+// ---
+std::vector<std::string>* KPyParser::freeVars_part(){
+    std::vector<std::string>* freeVars = new std::vector<std::string>();
+    KPyToken *token = input->get_token();
+
+    if(token->get_lex() != "FreeVars"){
+        input->put_back_token();
+        return freeVars;
+    }
+
+    token = input->get_token();
+    if(token->get_lex() != ":"){
+        bad_token(token, "Expected a ':'.");
+    }
+
+    return idlist(freeVars);
+}
