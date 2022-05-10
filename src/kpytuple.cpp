@@ -79,3 +79,14 @@ KPyObject* KPyTuple::__len__(std::vector<KPyObject*>* args){
     
     return new KPyInt(data.size());
 }
+
+// ---
+KPyObject* KPyTuple::__iter__(std::vector<KPyObject*>* args){
+    std::ostringstream oss;
+    if(args->size() != 0){
+        oss << "TypeError: expected 0 argument, got " << args->size();
+        throw new KPyException(KPYWRONGARGCOUNTEXCEPTION, oss.str());
+    }
+
+    return new KPyTupleIterator(this);
+}
