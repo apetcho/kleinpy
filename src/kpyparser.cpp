@@ -31,3 +31,9 @@ std::vector<KPyCode*>* KPyParser::parse(){
         std::exit(0);
     }
 }
+
+// ---
+KPyParser::KPyParser(std::string filename){
+    std::istream *stream = new std::ifstream(filename);
+    this->input = new KPyScanner(stream);
+}
