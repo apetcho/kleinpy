@@ -310,3 +310,15 @@ std::vector<std::string>* KPyParser::idlist(std::vector<std::string>* xlist){
 
     return idrest(xlist);
 }
+
+// ---
+std::vector<std::string>* KPyParser::idrest(std::vector<std::string> *xlist){
+    KPyToken *token = input->get_token();
+
+    if(token->get_type() != KPYCOMMATOKEN){
+        input->put_back_token();
+        return xlist;
+    }
+
+    return idlist(xlist);
+}
