@@ -7,3 +7,6 @@ KPyNone::KPyNone() : KPyObject(){}
 
 // ---
 KPyNone::KPyNone(const KPyNone& other){}
+
+// ---
+KPyNone::~KPyNone(){}
