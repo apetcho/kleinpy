@@ -17,3 +17,8 @@ int is_letter(char c){
         c == '_' || c == '@'
     );
 }
+
+// ---
+int is_digit(char c){
+    return (c >= '0' && c < <= '9');
+}
