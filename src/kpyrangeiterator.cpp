@@ -13,3 +13,6 @@ KPyRangeIterator::KPyRangeIterator(KPyRange *obj) : KPyObject() {
         &KPyRangeIterator::__next__
     );
 }
+
+// ---
+KPyRangeIterator::~KPyRangeIterator(){}
