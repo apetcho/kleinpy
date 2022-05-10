@@ -195,5 +195,20 @@ KPyToken* KPyScanner::get_token(){
             }
             break;
         }
+
+        if(!foundOne){
+            lex = lex + c;
+            c = istrm->get();
+        }
     }
+    istrm->putback(c);
+    colcount--;
+    token = new KPyToken(type, lex, line, column);
+
+#ifdef debug
+    std::cerr << "just found " << lex << " with type " << type << std::endl;
+#endif
+    lasttok = token;
+
+    return token;
 }
