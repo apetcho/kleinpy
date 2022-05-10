@@ -180,6 +180,12 @@ KPyToken* KPyScanner::get_token(){
             type = KPYRIGHTPARENTOKEN;
             break;
         case 11:
+            if(is_digit(c)){state = 2;}
+            else{
+                type = KPYBADTOKEN;
+                foundOne = true;
+            }
+            break;
         case 12:
         }
     }
