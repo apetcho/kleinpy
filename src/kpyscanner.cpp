@@ -176,6 +176,9 @@ KPyToken* KPyScanner::get_token(){
             type KPYLEFTPARENTOKEN;
             break;
         case 10:
+            foundOne = true;
+            type = KPYRIGHTPARENTOKEN;
+            break;
         case 11:
         case 12:
         }
