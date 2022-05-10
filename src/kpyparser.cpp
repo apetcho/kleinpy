@@ -158,3 +158,13 @@ std::vector<KPyObject*>* KPyParser::const_part(
 
     return constants;
 }
+
+// ---
+std::vector<KPyObject*>* KPyParser::value_list(
+    std::vector<KPyObject*>* constants, std::vector<KPyCode*>* nestedFuncs
+){
+    KPyObject *value = value(nestedFuncs);
+    constants->push_back(value);
+    constants = value_rest(constants, nestedFuncs);
+    return constants;
+}
